@@ -43,10 +43,18 @@ RUN conda install -y -q --name neuro bokeh \
                                      vtk \
     && sync && conda clean -tipsy && sync \
     && bash -c "source activate neuro \
-    && pip install  --no-cache-dir nitime \
+    && pip install  --no-cache-dir atlasreader \
+                                   fury \
+                                   nitime \
                                    nibabel \
-                                   nilearn==0.5.0a \
+                                   nilearn \
+                                   nistats \
+                                   pingouin \
+                                   matplotlib \
+                                   nose \
+                                   git+https://github.com/bids-standard/pybids.git \
                                    pymvpa2 \
+                                   scipy \
                                    tensorflow \
                                    keras \
                                    vtk" \
@@ -63,7 +71,8 @@ RUN bash -c 'source activate neuro \
              && cd /data/ds000114 \
              && datalad get -J 4 /data/ds000114/sub-0[234789]/ses-test/anat/sub-0[234789]_ses-test_T1w.nii.gz \
                                  /data/ds000114/sub-0[234789]/ses-test/func/*fingerfootlips* \
-                                 /data/ds000114/derivatives/freesurfer/sub-01'
+                                 /data/ds000114/derivatives/freesurfer/sub-01 \
+                                 /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips*'
 
 #------------------------------------------------
 # Copy workshop notebooks into image and clean up
