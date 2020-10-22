@@ -1,6 +1,6 @@
 # Creates the docker container for the workshop in Cambridge
 # Run the container with the following command:
-#   docker run -it --rm -p 8888:8888 miykael/workshop_cambridge
+#   docker run -it --rm -p 8888:8888 miykael/workshop_pybrain
 
 FROM miykael/nipype_tutorial:latest
 

@@ -16,12 +16,12 @@ jobs:
           name: docker build 1
           no_output_timeout: 60m
           command: |
-            docker build -t miykael/workshop_cambridge:$CIRCLE_BRANCH .
+            docker build -t miykael/workshop_pybrain:$CIRCLE_BRANCH .
       - run:
           name: run tests 1
           no_output_timeout: 120m
           command: |
-            docker run -it --rm miykael/workshop_cambridge:$CIRCLE_BRANCH python /home/neuro/workshop/test_notebooks.py
+            docker run -it --rm miykael/workshop_pybrain:$CIRCLE_BRANCH python /home/neuro/workshop/test_notebooks.py
 
 workflows:
   version: 2
