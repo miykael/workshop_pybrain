@@ -183,7 +183,7 @@ layout: false
 ## BIDS
 ### [BIDS structure](#datamanage) | [BIDS converters](#heudiconv) | [BIDS validator](#validator) | [BIDS extensions](#bidsextensions) | [pyBIDS](#pybids)
 ## BIDS Apps
-### [MRIQC](#mriqc) | [fMRIPrep](#fmriprep) | [C-PAC](#cpac) | [Mindboggle](#mindboggle)
+### [BIDSonym](#bidsonym) | [MRIQC](#mriqc) | [fMRIPrep](#fmriprep) | [fmriflows](#fmriflows) | [C-PAC](#cpac) | [Mindboggle](#mindboggle)
 ## Reproducibility
 ### [Neurodocker](#neurodocker) | [Openneuro](#openneuro) | [Neurovault](#neurovault) | [Datalad](#datalad)
 ### [Porcupine](#porcupine)
@@ -436,12 +436,19 @@ name: bidsextensions
 
 - [Models Specification](https://docs.google.com/document/d/1bq5eNDHTb6Nkx3WUiOBgKvLNnaa5OMcGtD0AZ9yms2M)
 
+- [Magnetoencephalography (MEG)](https://docs.google.com/document/d/1FWex_kSPWVh_f4rKgd5rxJmxlboAPtQlmBc1gyZlRZM)
+
 - [Electroencephalography (EEG)](https://docs.google.com/document/d/1ArMZ9Y_quTKXC-jNXZksnedK2VHHoKP3HCeO5HPcgLE)
 
 - [intracranial Electroencephalography (iEEG)](https://docs.google.com/document/d/1qMUkoaXzRMlJuOcfTYNr3fTsrl4SewWjffjMD5Ew6GY)
 
 - [Eye Tracking including Gaze Position and Pupil Size](https://docs.google.com/document/d/1eggzTCzSHG3AEKhtnEDbcdk-2avXN6I94X8aUPEBVsw)
 
+- [Susceptibility Weighted Imaging (SWI)](https://docs.google.com/document/d/1kyw9mGgacNqeMbp4xZet3RnDhcMmf4_BmRgKaOkO2Sc)
+
+- [Genetic information](https://docs.google.com/document/d/1uRkgyzESLKuGjXi98Z97Wh6vt-iLN5nOAb9TG16CjUs)
+
+- [Microelectrode Recordings (MER)](https://docs.google.com/document/d/14KC1d5-Lx-7ZSMtwS7pVAAvz-2WR_uoo5FvsNirzqJw)
 ---
 name: bidsapps
 
@@ -486,6 +493,29 @@ Container image capturing neuroimaging pipeline that takes BIDS as input
 
 <img src="images/bids-apps.png" width="100%" />
 
+---
+name: bidsonym
+
+## [BIDSonym](https://github.com/PeerHerholz/BIDSonym)
+
+- deidentification is a necessary prerequisite for data sharing and enforced by all data sharing platforms
+--
+
+- this includes:
+
+  - defacing
+
+  - metadata deletion
+
+<img src="https://raw.githubusercontent.com/PeerHerholz/BIDSonym/master/img/bidsonym_example.png" width="100%" />
+
+--
+
+```
+docker run -i --rm -v /Users/peer/ds005:/bids_dataset bids/bidsonym /bids_dataset
+participant --deid pydeface --del_nodeface no_del
+--del_meta 'InstitutionAddress' --participant_label 01
+```
 ---
 name: mriqc
 
@@ -572,6 +602,17 @@ Check out the two examples to see how a visual report looks like:
 
 - [Group Functional Report](http://web.stanford.edu/group/poldracklab/mriqc/reports/func_group.html)
 
+--
+
+## [MRIQC](http://mriqc.readthedocs.io/en/latest/) - how to run it
+
+```
+docker run -it --rm -v <bids_dir>:/data:ro
+           -v <output_dir>:/out
+           poldracklab/mriqc:latest /data /out
+           participant --participant_label 001 002 003
+```
+
 ---
 name: fmriprep
 
@@ -623,6 +664,8 @@ easy interpretable and comprehensive error and output reporting
 
 - You can run fMRIPrep via docker / singularity containers
 
+
+
 - You can run fMRIPrep via [OpenNeuro.org](https://openneuro.org/)
 
 --
@@ -630,6 +673,175 @@ easy interpretable and comprehensive error and output reporting
 #### For everything else
 
 - Check out [http://fmriprep.readthedocs.io](http://fmriprep.readthedocs.io/en/latest/index.html)
+
+---
+## [fMRIPrep](http://fmriprep.readthedocs.io/en/latest/index.html) - Where do I sign,... I mean start?
+
+```
+sudo docker run -it --rm -v /path/to/data/:/data:ro
+            -v /path/to/output/:/out
+            -v /usr/local/freesurfer/license.txt:/fs_license
+            poldracklab/fmriprep /data /out participant
+            --bold2t1w-dof 6
+            --output-spaces func T1w MNI152NLin2009cAsym fsnative fsaverage
+            --use-aroma --skull-strip-template MNI152NLin2009cAsym
+            --fs-license-file /fs_license --cifti-output --write-graph
+            --participant_label 01
+```
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - anatomical
+
+<img src="images/preproc_anat_brain.png" width="80%" />
+
+
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - anatomical
+
+
+<img src="images/preproc_anat_segmentation.png" width="80%" />
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - anatomical
+
+<img src="images/preproc_anat_normalized.png" width="80%" />
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+<img src="images/preproc_func_carpet_nofilt.png" width="80%" />
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+
+<img src="images/preproc_func_confounds_compA_nofilt.png" width="80%" />
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+
+<img src="images/preproc_func_confounds_compT_nofilt.png" width="80%" />
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+
+<img src="images/preproc_func_confounds_main_nofilt.png" width="80%" />
+
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+<img src="images/preproc_func_confounds_motion_filt.png" width="80%" />
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+
+<img src="images/preproc_func_ICA_comp_brain_nofilt.png" width="80%" />
+
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Preprocessing - functional
+
+<img src="images/preproc_func_overlays.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Analyses
+
+<img src="images/fmriflows_stat.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Analyses
+
+<img src="images/fmriflows_searchlight.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Analyses
+
+<img src="images/fmriflows_graph.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Analyses
+
+<img src="images/fmriflows_eval_1.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### Analyses
+
+<img src="images/fmriflows_eval_2.png" width="80%" />
+
+
+---
+## [fmriflows](https://github.com/miykael/fmriflows)
+
+#### How to run it?
+
+```
+docker run -it --rm -p 8888:8888
+            -v /path/to/data:/data
+            miykael/fmriflows
+```
+
 
 ---
 name: cpac
@@ -661,7 +873,33 @@ name: cpac
 .left[<small>*[cpac docs](http://fcp-indi.github.io/docs/user/index.html)</small>]
 
 ---
+## [C-PAC](https://fcp-indi.github.io) - How to run it?
 
+- run C-PAC using the default settings
+
+```
+docker run -i --rm \
+        -v /Users/You/local_bids_data:/bids_dataset \
+        -v /Users/You/some_folder:/outputs \
+        -v /tmp:/scratch \
+        fcpindi/c-pac:latest /bids_dataset /outputs participant
+```
+
+--
+
+- run C-PAC using a custom pipeline generated by you through C-PAC
+
+```
+docker run -i --rm \
+        -v /Users/You/local_bids_data:/bids_dataset \
+        -v /Users/You/some_folder:/outputs \
+        -v /tmp:/scratch \
+        -v /Users/You/Documents:/configs \
+        -v /Users/You/resources:/resources \
+        fcpindi/c-pac:latest /bids_dataset /outputs participant
+        --pipeline_file /configs/pipeline_config.yml
+```
+---
 name: mindboggle
 
 ## [Mindboggle](http://www.mindboggle.info) - What is it?
@@ -743,6 +981,17 @@ name: mindboggle
 <img src="images/mindboggle_workflow_8.png" width="90%" />
 
 .left[<small>*[mindboggle docs](http://www.mindboggle.info) & [mindboggle paper](https://doi.org/10.1371/journal.pcbi.1005350)</small>]
+
+---
+## [Mindboggle](http://www.mindboggle.info) - How to run it?
+
+```
+docker run -ti -v path/to/data/:/home/jovyan/work/data
+           bids/mindboggle
+           /home/jovyan/work/data
+           /home/jovyan/work/data/derivatives/
+           participant
+```
 
 ---
 name: neurodocker
@@ -829,15 +1078,22 @@ Providing a data portal and a versioning system for everyone, DataLad lets you h
  - And there is more: Store every command / step that you do in your dataset (like git version control)
 
 ---
-name: porcupine
+name: Giraffe tools
 
-## [Porcupine](https://timvanmourik.github.io/Porcupine/) - a GUI for Nipype
+## [Giraffe tools](https://giraffe.tools/)
 
-<img src="images/porcupine.png" width="80%"/>
+--
 
-<img src="images/porcupine_how.png" width="90%"/>
+### [Armadillo](https://giraffe.tools/armadillo/TimVanMourik/GiraffePlayground/master)
 
-.left[<small>*[by Tim van Mourik](https://github.com/TimVanMourik/Porcupine), check the [Porcupine preprint here](https://www.biorxiv.org/content/early/2017/09/12/187344) </small>]
+<img src="images/armadillo.png" width="50%"/>
+
+--
+
+### [Porcupine](https://giraffe.tools/porcupine/TimVanMourik/GiraffePlayground/master) - a GUI for Nipype
+<img src="images/porcupine.png" width="60%"/>
+
+.left[<small>*[by Tim van Mourik](https://github.com/TimVanMourik/Porcupine), check the [Porcupine paper here](https://doi.org/10.1371/journal.pcbi.1006064) </small>]
 
 ---
 name: neurostars

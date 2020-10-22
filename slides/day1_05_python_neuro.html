@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nipype: Basic Concepts</title>
+    <title>Python & Neuroimaging</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
@@ -170,146 +170,114 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-# Nipype
-# Interfaces & Workflows
-## Learn and understand the basics
-### ~90min
+# Python & Neuroimaging
+## Nistats, DIPY, Nilearn, PyMVPA & Keras
+### ~4h
+---
+name: intro
+layout: false
+
+## Introduction
+
+As with "classic" scientific toolboxes, python has something for everything in the tremendously diverse realm of neuroimaging analyses.
+Within this section, we'll go through some libraries that are more than useful for the most common approaches & modalities: statistical analyses of fMRI data,
+DTI, functional connectivity and machine/deep learning:
+
+* `Nistats` : statistical analyses of fMRI data
+
+* `DIPY`: DTI including registration, reconstruction, tractography, structural connectivity, visualization
+
+* `Nilearn`: functional connectivity, connectomes, seed based correlations, machine learning
+
+* `PyMVPA`: machine learning
+
+* `Keras`: deep learning
 
 ---
-name: content
-class: left
-layout: false
-name: intro
+name: exercise1
 
 .left-column[
 
-## Basic Concepts
-### ~90min
+## Hands On
+### ~30min
 ]
-
 .right-column[
-Nipype is very easy to learn, but nonetheless requires the understanding of some basic concepts.
 
-<img src="images/nipype_tutorial_basics.png" width="100%" />
-
-For this reason, please go through the section `Basic Concepts` under [`nipype_tutorial/index.ipynb`](../../../notebooks/nipype_tutorial/index.ipynb).
-
+### Nistats - statistical analyses of fMRI
+Please go now through the jupyter notebook [`workshop/notebooks/nistats.ipynb`](../../../notebooks/workshop/notebooks/nistats.ipynb).
 ]
 
 ---
+name: exercise1
 
-## Recap of Basics - Part 1
+.left-column[
 
-* **Interface**: Module to run well-defined tasks (i.e. smoothing, skull extraction, etc.)
+## Hands On
+### ~45min
+]
+.right-column[
 
-    ```python
-    from nipype.interfaces.fsl import BET
-    BET.help()  # To get help
-    ```
-
---
-
-* **Node**: Wraps around an interface and lets you connect them to each other
-
-    ```python
-    from nipype import Node
-    bet = Node(BET(frac=0.3), name='bet_node')
-    ```
-
---
-
-* **Workflow**: Collection of nodes, connected in a directed fashion (i.e. graph)
-
-    ```python
-    from Nipype import Workflow
-    wf = Workflow(name="smoothflow", base_dir="/output/working_dir")
-    wf.connect([(smooth, mask, [("out_file", "in_file")])])
-    ```
-
---
-
-* **Graph Visualization**: Helps you to better understand a built workflow
-
-    ```python
-    wf.write_graph(graph2use='colored')
-    ```
+### DIPY - DTI
+Please go now through the jupyter notebook [`workshop/notebooks/diffusion_imaging.ipynb`](../../../notebooks/workshop/notebooks/diffusion_imaging.ipynb).
+]
 
 ---
+name: exercise1
 
-## Recap of Basics - Part 2
+.left-column[
 
-* **Data Input**: There are many ways to get your data into a workflow, e.g. `DataGrabber`, `SelectFinder`, etc.
+## Hands On
+### ~45min
+]
+.right-column[
 
---
-
-* **Data Output**: There are many ways to keep only desired workflow output, e.g. `DataSink`
-
---
-
-* **Execution Plugins**: Different ways to run a workflow, i.e. sequential, parallel, on a cluster
-
-    ```python
-    workflow.run(plugin='Linear')
-    workflow.run(plugin='MultiProc', plugin_args={'n_procs': 4})
-    workflow.run('SGEGraph', plugin_args={'qsub_args': '-q many'})
-    ```
-
---
-
-* **Function Interface**: Shortcut to create your own interface
-
-    ```python
-    def write_parameter_to_txt(my_parameter):
-        import numpy as np
-        out_file = 'new_parameter.txt'
-        np.savetxt(out_file, [my_parameter], fmt='%d')
-        return out_file
-
-    write_paraemter = Node(Function(input_names=['my_parameter'],
-                                    output_names=['out_file'],
-                                    function=write_parameter_to_txt),
-                           name='write_paraemter')
-    ```
+### Nilearn - functional connectivity
+Please go now through the jupyter notebook [`workshop/notebooks/functional_connectivity.ipynb`](../../../notebooks/workshop/notebooks/functional_connectivity.ipynb).
+]
 
 ---
+name: exercise1
 
-## Recap of Basics - Part 3
+.left-column[
 
-* **Iterables** (left): Allows to iterate over a specific parameter, e.g. subject name, smoothing kernel
+## Hands On
+### ~45min
+]
+.right-column[
 
-    ```python
-    isosmooth = Node(IsotropicSmooth(), name='iso_smooth')
-    isosmooth.iterables = ("fwhm", [4, 8, 16])
-    ```
-
-* **MapNode** (right): Allows to iterate over a specific parameter, e.g. subject name, smoothing kernel
-
-    ```python
-    from nipype import MapNode
-    gunzip = MapNode(Gunzip(), name='gunzip',
-                     iterfield=['in_file'])
-    gunzip.inputs.in_file = ['func01.nii.gz', 'func02.nii.gz', 'func03.nii.gz']
-    ```
-
-  <img src="../../../notebooks/nipype_tutorial/static/images/iterables.png" height="180">
-  <img src="../../../notebooks/nipype_tutorial/static/images/mapnode.png" height="180">
+### Machine learning tutorial
+Please go now through the jupyter notebook [`workshop/notebooks/machine_learning_tutorial.ipynb`](../../../notebooks/workshop/notebooks/machine_learning_tutorial.ipynb).
+]
 
 ---
+name: exercise1
 
-## Recap of Basics - Part 4
+.left-column[
 
-* **JoinNode** (left): Like a MapNode that units again a previous `iterable` conjunction
+## Hands On
+### ~45min
+]
+.right-column[
 
-* **Synchronize** (middle): Iterate over a list of parameters in `zipped` way
-
-* **Itersource** (right):  Allows you to expand a downstream iterable based on a mapping of an upstream iterable
-
-  <img src="../../../notebooks/nipype_tutorial/static/images/joinnode.png" width="190">
-  <img src="../../../notebooks/nipype_tutorial/static/images/synchronize_1.png" width="250">
-  <img src="../../../notebooks/nipype_tutorial/static/images/itersource_1.png" width="250">
+### Machine learning - nilearn & PyMVPA
+Please go now through the jupyter notebook [`workshop/notebooks/machine_learning_nilearn_and_pymvpa.ipynb`](../../../notebooks/workshop/notebooks/machine_learning_nilearn_and_pymvpa.ipynb).
+]
 
 ---
+name: exercise1
 
+.left-column[
+
+## Hands On
+### ~45min
+]
+.right-column[
+
+### Keras - deep learning
+Please go now through the jupyter notebook [`workshop/notebooks/machine_learning_keras.ipynb`](../../../notebooks/workshop/notebooks/machine_learning_keras.ipynb).
+]
+
+---
 layout: true
 class: center, middle, inverse
 ---
