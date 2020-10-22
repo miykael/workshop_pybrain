@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .blue { color: #0000fa; }
+      .green { color: #698b69; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (40% left) */
+      .left-column2 {
+        color: #777;
+        width: 40%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column2 {
+        width: 55%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (60% left) */
+      .left-column3 {
+        color: #777;
+        width: 60%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column3 {
+        width: 35%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (flipped) */
+      .left-column-inv {
+        color: #777;
+        width: 75%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column-inv {
+        width: 20%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Short introduction to Python
+# & Jupyter Notebook
+### ~60min
+---
+name: content
+class: left
+layout: false
+name: intro
+
+## Python - the language
+
+* Python is a **interpreted high-level** programming language
+
+* Emphasizes is on code readability and a syntax structure that allows programmers to express concepts in fewer lines of code.
+
+--
+
+### Examples
+```python
+>>> text='hello world'
+```
+```python
+>>> print(text)
+hello world
+```
+```python
+>>> 'world' in text
+True
+```
+---
+name: content
+layout: false
+
+name: intro
+
+## Python - What to use?
+
+  - **Terminal** and a **text editor**
+
+      - We recommend [IPython](https://ipython.org/) and [Visual Studio Code](https://code.visualstudio.com/)
+
+      - Can be difficult to keep track of what's happening
+
+&nbsp;
+
+--
+
+  - **Integrated development environment (IDE)** with a nice graphical user interface (**GUI**), (i.e. like MATLAB)
+
+      - Makes transition from other languages easy
+
+      - We recommend [`Spyder`](https://pythonhosted.org/spyder/)
+
+&nbsp;
+
+--
+
+  - Interactive and dynamic **web application**, such as [Jupyter Notebook](http://jupyter.org/) or [JupyterLab](http://jupyterlab.readthedocs.io/en/stable/).
+
+      - Best way for scientists to learn programming, explore data and communicate results
+
+---
+
+name: jupyter
+
+## Jupyter Notebook - to program
+
+Open-source web application that allows to create and share documents that contain live code, equations, visualizations, and narrative text.
+
+Jupyter Notebooks was created for Python, but can also be used for other programming languages, such as `R`, `Julia`, `Scala`, `HTML`, etc.
+
+<img src="images/jupyterpreview.png" width="75%" />
+
+---
+
+name: anaconda
+
+## Conda - to get Python and other packages
+
+The best way to get a good, stable and flexible Python environment on your system is [Conda](https://conda.io/docs/).
+
+&nbsp;
+
+Conda gives you access to almost all python packages that you need. For the rest use `pip` or `git`.
+
+--
+
+&nbsp;
+
+Install a minimalistic conda environment with [Miniconda](https://conda.io/miniconda.html) and a more complete one, with the basic packages already pre-installed with [Anaconda](https://www.anaconda.com/download).
+
+--
+
+&nbsp;
+
+Conda allows you to have multiple Python environments next to each.
+
+---
+
+name: exercise
+
+.left-column[
+
+## Hands On
+### ~5min
+]
+
+## Jupyter Notebook
+
+Please go through the Jupyter Notebook introduction under [`nipype_tutorial/notebooks/introduction_jupyter-notebook.ipynb`](../../../notebooks/nipype_tutorial/notebooks/introduction_jupyter-notebook.ipynb).
+
+***Note:*** Open the link with right-click and select "open link in new tab".
+
+---
+
+name: important
+
+## Jupyter Notebook - Important to know
+
+- How to create a new notebook?
+
+- Add a new cell ***above*** with `a` or ***below*** with `b`. Make sure that you escaped the current cell with `ESC`
+
+- Execute a cell with `SHIFT+Enter`
+
+- Switch between text and code with `y` and `m`
+
+- Save Jupyter Notebook as PDF, HTML, python script
+
+- Stop computation with the stop button or under `Kernel > Interrupt`
+
+- Restart kernel with `Kernel > Restart`
+
+- Change kernel with `Kernel > Change kernel`
+
+- For anything else, look into `Shortcuts`
+
+- Jupyter notebook even provides a `Terminal` (allows you to install additional packages)
+
+---
+
+name: whygood
+
+## Jupyter Notebooks are especially great for research!
+
+Increase the learning curve in Python
+
+&nbsp;
+
+--
+
+Great tool to share data, results, and code
+
+- Great for open & reproducible science
+
+- See for example the [LIGO results](https://losc.ligo.org/tutorials/)
+
+&nbsp;
+
+--
+
+Great for teaching
+
+- Interactive Notebooks via [mybinder](https://mybinder.org/) or [Google Colaboratory](https://colab.research.google.com)
+
+- See this workshop (hopefully)
+
+---
+
+name: exercise
+
+.left-column[
+
+## Hands On
+### ~30min
+]
+
+## Python Basics
+
+Please go through the notebook about Python basics under [`nipype_tutorial/notebooks/introduction_python.ipynb`](../../../notebooks/nipype_tutorial/notebooks/introduction_python.ipynb).
+
+Don't worry if you don't get through everything. We will do a short recap at the end to make sure that we're all on the same page.
+
+---
+name: important1
+class: left
+layout: false
+name: intro
+
+## Python - Important to know 1
+
+```python
+# Modules & Help
+>>> import numpy as np
+>>> np.mean?
+```
+--
+```python
+# Variable assignment and variable type
+>>> text = 'Frankfurt'  # Type string
+>>> number1 = 5         # Type integer
+>>> number2 = 5.0       # Type float
+>>> number1 == number2  # Type boolean
+```
+--
+```python
+# Strings and list slicing
+>>> 'Hello World'[6::2]
+'Wrd'
+```
+--
+```python
+# Important: Indexing beginns at `0`
+>>> my_list = ['one', 'two', 'three', 'four']
+>>> my_list[1], my_list[0]
+'two', 'one'
+```
+--
+```python
+# Lists, Tuples, Dictionaries
+>>> a_list = [1, 3, 5, 7, 10]  # content can be changed
+>>> a_tuple = (1, 3, 5, 7, 10) # content cannot be changed
+>>> a_dict = {'name': 'michael',
+>>>           'hobbies': ['chocolat', 'programming', 24]}
+>>> a_dict['hobbies'][1]
+'programming'
+```
+
+---
+name: important2
+class: left
+layout: false
+name: intro
+
+## Python - Important to know 2
+
+```python
+# List comprehension
+>>> [i**2 for i in range(5)]
+[0, 1, 4, 9, 16]
+```
+--
+```python
+# Indentation, Functions & Control Flow
+def square_positive_odd_number(number):
+    if number % 2 != 0 and number > 0:
+        answer = 'The square of your number is: '
+        answer += str(number**2)
+    elif number < 0:
+        answer = 'Your number is negative'
+    else:
+        answer = 'Your number is positive but even'
+    return answer
+```
+--
+```python
+# Loops (for & while) and breaks
+for i in range(-5, 20):
+    response = square_positive_odd_number(i)
+    print(response)
+
+    if i >= 10:
+      break
+```
+
+---
+layout: true
+class: center, middle, inverse
+---
+name: questions
+
+# Questions?
+
+    </textarea>
+    <script src="remark-latest.min.js" type="text/javascript">
+    </script>
+    <script>
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script src="remark.language.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1placeholder8-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.scripts[0];
+        s.parentNode.insertBefore(ga, s);
+      }());
+    </script>
+  </body>
+</html>

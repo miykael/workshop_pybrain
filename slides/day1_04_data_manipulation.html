@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Manipulation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .blue { color: #0000fa; }
+      .green { color: #698b69; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (40% left) */
+      .left-column2 {
+        color: #777;
+        width: 40%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column2 {
+        width: 55%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (60% left) */
+      .left-column3 {
+        color: #777;
+        width: 60%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column3 {
+        width: 35%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (flipped) */
+      .left-column-inv {
+        color: #777;
+        width: 75%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column-inv {
+        width: 20%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Data Manipulation
+## with Nibabel and Nilearn
+### ~60min
+---
+name: intro
+layout: false
+
+## Introduction
+
+`Nibabel` and `Nilearn` are two python packages that help to load, modify, save and visualize neuroimaging data.
+
+* `Nibabel`'s main focus is on loading and saving any kind of neuroimaging data.
+
+* `Nilearn`'s main focus is on statistical learning (based on `scikit-learn`) but is also very good in manipulation and visualizing neuroimaging data.
+
+* The two software packages together allow you to do almost anything with your MRI data that you want.
+
+---
+name: exercise1
+
+.left-column[
+
+## Hands On
+### ~15min
+]
+.right-column[
+
+### Nibabel
+Please go now through the jupyter notebook [`workshop/notebooks/image_manipulation_nibabel.ipynb`](../../../notebooks/workshop/notebooks/image_manipulation_nibabel.ipynb).
+]
+
+---
+name: important
+
+##Important Points
+
+```python
+# To import the module
+import nibabel as nb
+```
+```python
+# Load a brain image
+img = nb.load('func.nii.gz')
+```
+```python
+# Get Header, affine or data
+img.header, img.affine, img.get_data()
+```
+```python
+# Interactively view a brain image
+img.orthoview()
+```
+```python
+# Save a brain image
+new_img = nb.Nifti1Image(data, affine=img.affine, header=img.header)
+nb.save(new_img, '/folder/filename.nii.gz')
+```
+
+If you want to investigate a brain image directly from the command line / terminal, use `nib-ls`
+
+```
+>>> nib-ls func.nii
+func.nii    int16    [ 64,  64,  30, 184]    4.00x4.00x4.00x2.50    sform
+```
+
+---
+name: exercise2
+
+.left-column[
+
+## Hands On
+### ~40min
+]
+.right-column[
+
+### Nilearn
+Please go now through the jupyter notebook [`workshop/notebooks/image_manipulation_nilearn.ipynb`](../../../notebooks/workshop/notebooks/image_manipulation_nilearn.ipynb).
+]
+
+---
+name: important
+
+## Important Points
+
+### 1. Image manipulation with nilearn
+
+```python
+from nilearn import image
+```
+```python
+# Create a mean image
+mean = image.mean_img('func.nii.gz')
+```
+```python
+# Resample mean image to anatomy
+mean_new = image.resample_to_img(mean, anat)
+```
+```python
+# Smooth an image
+smoothed_mean = image.smooth_img(mean, fwhm=4)
+```
+```python
+# Clean image (to improve SNR)
+image.clean_img(func, detrend=True, standardize=False, t_r=TR)
+```
+```python
+# Treat a brain image like a numpy array with
+thr = image.threshold_img(mean, threshold='99%')
+cluster = nilearn.regions.connected_regions(thr)[0]
+mask = nli.math_img('np.mean(img,axis=3) > 0', img=cluster)
+```
+---
+layout: true
+class: left
+---
+
+```python
+# Apply mask
+from nilearn.masking import apply_mask
+all_timecourses = apply_mask(func, mask)
+```
+```python
+# Revert mask
+from nilearn.masking import unmask
+img_timecourse = unmask(all_timecourses, mask)
+```
+```python
+# Perform Independent Component Analysis (ICA)
+from nilearn.decomposition import CanICA
+canica = CanICA(
+    n_components=10, smoothing_fwhm=6, threshold=3.,
+    verbose=10, random_state=0, n_jobs=-1, standardize=True)
+canica.fit(func)
+```
+```python
+# Perform Dictionary Learning
+from nilearn.decomposition import DictLearning
+dict_learning = DictLearning(
+    n_components=10, n_epochs=1, alpha=1., smoothing_fwhm=6,
+    standardize=True, verbose=1, random_state=0, n_jobs=-1)
+canica.fit(dict_learning)
+```
+---
+### 2. Image visualization with nilearn
+
+```python
+from nilearn import plotting
+```
+```python
+# Plot Glass Brain
+plotting.plot_glass_brain(
+    func_tmap, threshold=3, colorbar=True, title='fancy title',
+    plot_abs=False, display_mode='lyrz')
+```
+```python
+# Overlay functional image onto anatomical image
+plotting.plot_stat_map(func_tmap, display_mode='z', cut_coords=5,
+                       threshold=2, title="fancy title")
+```
+```python
+# Overlay two images ontop of each other
+plotting.plot_roi('anat1.mgz', 'anat2.nii.gz',
+                  dim=-1, cut_coords=(0, 0, 0))
+```
+```python
+# Create plots with edges
+display = plotting.plot_anat(mean, dim=-0.5)
+display.add_edges(t1, color='r')
+```
+```python
+# Create 3D Surface Plot
+plotting.plot_surf_stat_map(
+    fsaverage.infl_right, texture, hemi='right', title='fancy title',
+    threshold=1., bg_map=fsaverage.sulc_right, view='lateral', cmap='cold_hot')
+plotting.show()
+```
+
+---
+layout: true
+class: center, middle, inverse
+---
+name: questions
+
+# Questions?
+
+    </textarea>
+    <script src="remark-latest.min.js" type="text/javascript">
+    </script>
+    <script>
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script src="remark.language.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1placeholder8-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.scripts[0];
+        s.parentNode.insertBefore(ga, s);
+      }());
+    </script>
+  </body>
+</html>

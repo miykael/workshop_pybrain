@@ -1,0 +1,42 @@
+name: workshop
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.6
+  - ipython
+  - jupyter
+  - jupyterlab
+  - jupyter_contrib_nbextensions
+  - matplotlib
+  - nb_conda
+  - nb_conda_kernels
+  - nbconvert
+  - nbformat
+  - numpy
+  - pandas
+  - pip
+  - pytest
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - seaborn
+  - statsmodels
+  - traits
+  - dipy
+  - bokeh
+  - holoviews
+  - plotly
+  - pip:
+    - keras
+    - nbval
+    - nibabel
+    - nilearn
+    - nitime
+    - nipy
+    - nipype
+    - pybids
+    - pymvpa2
+    - tensorflow
+    - datalad[full]
+    - vtk

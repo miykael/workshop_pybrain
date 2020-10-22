@@ -1,0 +1,35 @@
+name: neuro
+channels:
+- defaults
+- conda-forge
+dependencies:
+- h5py
+- joblib
+- jupyter
+- jupyter_contrib_nbextensions
+- jupyterlab
+- matplotlib
+- nb_conda
+- nbformat
+- nilearn
+- nose
+- numpy
+- pandas
+- pip
+- pytest
+- python=3.6
+- scikit-image
+- scikit-learn
+- scipy
+- seaborn
+- sphinx
+- statsmodels
+- traits
+- pip:
+  - https://github.com/INCF/pybids/tarball/master
+  - https://github.com/nipy/nipype/tarball/master
+  - nbval
+  - nibabel
+  - nilearn
+  - nipy
+  - nitime

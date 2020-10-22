@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conda & Docker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .blue { color: #0000fa; }
+      .green { color: #698b69; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (40% left) */
+      .left-column2 {
+        color: #777;
+        width: 40%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column2 {
+        width: 55%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (60% left) */
+      .left-column3 {
+        color: #777;
+        width: 60%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column3 {
+        width: 35%;
+        float: right;
+        padding-top: 1em;
+      }
+      /* Two-column layout (flipped) */
+      .left-column-inv {
+        color: #777;
+        width: 75%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column-inv {
+        width: 20%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Conda & Docker
+## How to setup the right computation environment
+### ~45min
+
+---
+name: content
+class: left
+layout: false
+name: intro
+
+## What is the Problem?
+
+- Each project in a lab depends on complex software environments (OS, drivers, software dependencies)
+
+&nbsp;
+--
+
+- Problems connected with **reproducibility**:
+
+    - *The computer I used was shut down a year ago. Now I can’t rerun the results from my publication...*
+
+    - *The analysis was run by my student, have no idea where and how...*
+
+&nbsp;
+--
+
+- Problems connected with **collaborations**:
+
+    - *I forgot to mention that you have to use Clang, gcc never worked for me...*
+
+    - *It works on my computer...*
+
+    - *Which version did you install?*
+
+---
+
+## How can we solve this?
+
+We need to provide a mechanism to encapsulate environments in a self-contained unit that can run anywhere.
+
+The goal is to...
+
+  - **Isolate** the computing environment
+
+  - **Allow reconstructing** computing environments
+
+  - **Allow sharing** your computing environments
+
+--
+
+## The solution
+
+For a **pure Python** environment: Use [Conda](https://conda.io/docs/)
+
+<img src="images/conda_logo.svg" height="50" />
+
+For a **more complex** computation environment: Use [Docker](https://www.docker.com/) (or [Singularity](https://www.sylabs.io/))
+
+ <img src="images/docker_logo.png" height="75" />
+
+---
+### What is [Conda](https://conda.io/docs/)?
+
+  - A package manager and an environment manager that allows the creation of a contained python environment
+
+  - It doesn't affect other Python environments / installations
+
+  - Install [Miniconda](https://conda.io/miniconda.html) for a minimalistic conda environment and [Anaconda](https://www.anaconda.com/download) for a more complete one (with basic packages already pre-installed)
+
+
+---
+
+### How to use conda?
+
+```bash
+# Updating conda
+conda update conda
+
+# List available Python version
+conda search "^python$"
+
+# Creating a Python 3.6 environment and install some basic packages
+conda create -n my_new_py36 python=3.6 numpy scipy matplotlib
+
+# Create a new environment using a yml-file
+conda env create --name neuro --file /path/to/file/environment.yml
+
+# Export conda environment (first activate it)
+conda env export
+
+# Remove unused packages and caches
+conda clean -tipsy
+
+# Activating the environment
+source activate my_new_py36
+
+# Deactivating the environment
+source deactivate my_new_py36
+
+# List installed conda environments
+conda env list
+
+# Remove conda environment
+conda remove --name my_new_py36 --all
+```
+---
+
+## What is Docker?
+
+- Leading software container platform
+
+- Open-source / Free
+
+- Runs on Linux, Mac OS X, and Windows
+
+&nbsp;
+--
+
+## How does it work?
+
+- Docker needs a `Dockerfile` containing the relevant installation commands
+
+  ```bash
+  FROM ubuntu:latest
+  RUN apt-get update -y
+  RUN apt-get install -y -q --no-install-recommends git
+  ```
+
+--
+
+- With this `Dockerfile` present, creating and running a new container is very simple
+
+  ```bash
+  docker build -t my_new_container .
+  docker run -it --rm my_new_container
+  ```
+
+---
+
+## Why is this so great?
+
+- A docker container is a closed environment and will use the exact same software versions, drivers etc. independent from the system it runs on.
+
+--
+
+- [Docker Hub](https://hub.docker.com/): Free repositories to share Docker Images
+
+--
+
+- [Neurodocker](https://github.com/kaczmarj/neurodocker): Easy and quick way to generate custom Docker images for your neuroimaging environment
+
+  ```bash
+  docker run \
+        --rm kaczmarj/neurodocker:master generate docker \
+        --base neurodebian:stretch-non-free \
+        --pkg-manager apt \
+        --install ants fsl \
+        --add-to-entrypoint "source /etc/fsl/fsl.sh" \
+        --spm12 version=dev \
+        --user=neuro \
+        --miniconda miniconda_version="4.3.31" \
+          conda_install="python=3.6 jupyter numpy scipy matplotlib" \
+          pip_install="nilearn https://github.com/nipy/nipype/tarball/master" \
+          create_env="neuro" \
+          activate=True \
+        --workdir /home/neuro > Dockerfile
+  ```
+
+--
+
+- [Singularity](https://www.sylabs.io/): Docker alternative for computation clusters, as docker can escalate root privileges
+
+---
+
+### Short Summary of Docker commands - Part 1
+
+- Managing images:
+  ```bash
+  # Download docker container 'ubuntu'
+  docker pull ubuntu
+
+  # Show all installed docker container
+  docker images
+
+  # remove images
+  docker rmi <image_id>
+  ```
+
+- Running containers
+  ```bash
+  docker run ubuntu echo "hello from your container"
+  ```
+
+- Use `-it` option to run interactively
+  ```bash
+  docker run -it ubuntu bash
+  ```
+
+---
+
+### Short Summary of Docker commands - Part 2
+
+- Managing containers
+  ```bash
+  # list currently running containers
+  docker ps
+
+  # list created containers
+  docker ps -a
+
+  # remove containers
+  docker rm <container_id>
+
+  # remove all stoped containers
+  docker rm $(docker ps -a -q)
+  ```
+
+- Use `--rm` option to automatically remove container when it exits
+  ```bash
+  docker run -it --rm ubuntu
+  ```
+
+- Export and Import docker containers
+  ```bash
+  # Export docker image
+  docker save -o ubuntu_container.tar ubuntu
+
+  # Import docker image on another PC
+  docker load --input ubuntu_container.tar
+  ```
+---
+
+### Short Summary of Docker commands - Part 3
+
+- Mount one (or many) folders from your own OS inside the docker image
+  ```bash
+  # Mount local 'my_folder' inside docker container
+  # Note: Folder will be created if it doesn't exist or overwrits if present
+  docker run -it --rm -v /path/to/my_folder:/my_folder ubuntu
+
+  # Mount folder in read only mode
+  docker run -it --rm -v /path/to/my_folder:/my_folder:ro ubuntu
+  ```
+
+---
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Questions?
+
+
+    </textarea>
+    <script src="remark-latest.min.js" type="text/javascript">
+    </script>
+    <script>
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script src="remark.language.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+        }) ;
+    </script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1placeholder8-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.scripts[0];
+        s.parentNode.insertBefore(ga, s);
+      }());
+    </script>
+  </body>
+</html>
