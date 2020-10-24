@@ -2,7 +2,7 @@
 # Run the container with the following command:
 #   docker run -it --rm -p 8888:8888 miykael/workshop_pybrain
 
-FROM miykael/nipype_tutorial:latest
+FROM miykael/nipype_tutorial:2020
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -40,7 +40,6 @@ RUN conda install -y -q --name neuro bokeh \
                                      holoviews \
                                      plotly \
                                      dipy \
-                                     vtk \
     && sync && conda clean -tipsy && sync \
     && bash -c "source activate neuro \
     && pip install  --no-cache-dir atlasreader \
@@ -80,14 +79,6 @@ RUN bash -c 'source activate neuro \
 
 USER root
 
-COPY ["notebooks", "/home/neuro/workshop/notebooks"]
-
-COPY ["slides", "/home/neuro/workshop/slides"]
-
-COPY ["program.ipynb", "/home/neuro/workshop/program.ipynb"]
-
-COPY ["test_notebooks.py", "/home/neuro/workshop/test_notebooks.py"]
-
 RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3/AAChCae4sCHzB8GJ02VHGOYQa?dl=1 \
     && mkdir /data/adhd \
     && unzip /data/adhd_data.zip -d /data/adhd/ -x / \
@@ -95,14 +86,22 @@ RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3
 
 RUN chown -R neuro /data/adhd
 
+COPY ["program.ipynb", "/home/neuro/program.ipynb"]
+
+RUN chown -R neuro /home/neuro
+
+COPY ["notebooks", "/home/neuro/workshop/notebooks"]
+
+COPY ["slides", "/home/neuro/workshop/slides"]
+
+COPY ["test_notebooks.py", "/home/neuro/workshop/test_notebooks.py"]
+
 RUN chown -R neuro /home/neuro/workshop
 
 RUN rm -rf /opt/conda/pkgs/*
 
 USER neuro
 
-RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py
-
 WORKDIR /home/neuro
 
-CMD ["jupyter-notebook"]
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token='pybrain'"]
