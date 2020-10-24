@@ -2,6 +2,7 @@
 
 # Workshops Cambridge - 2020
 
+[![CircleCi](https://circleci.com/gh/miykael/workshop_pybrain.svg?style=shield)](https://circleci.com/gh/miykael/workshop_pybrain/tree/master)
 [![GitHub issues](https://img.shields.io/github/issues/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/pulls/)
 [![GitHub contributors](https://img.shields.io/github/contributors/miykael/workshop_pybrain.svg)](https://GitHub.com/miykael/workshop_pybrain/graphs/contributors/)
