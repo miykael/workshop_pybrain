@@ -1,4 +1,4 @@
-<img src="slides/images/Cambridge_logo.png" height=50>
+<img src="slides/images/Cambridge_logo.png" height=100>
 
 # Workshops Cambridge - 2020
 
