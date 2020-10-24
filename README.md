@@ -1,4 +1,4 @@
-![](slides/images/Cambridge_logo.png)
+<img src="slides/images/Cambridge_logo.png" height=50>
 
 # Workshops Cambridge - 2020
 
