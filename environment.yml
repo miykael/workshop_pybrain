@@ -1,9 +1,9 @@
-name: workshop
+name: pybrain
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.6
+  - python=3.7
   - ipython
   - jupyter
   - jupyterlab
@@ -22,21 +22,29 @@ dependencies:
   - scipy
   - seaborn
   - statsmodels
+  - swig
   - traits
   - dipy
   - bokeh
   - holoviews
   - plotly
   - pip:
+    - atlasreader
+    - datalad[full]
+    - duecredit
+    - fury
     - keras
     - nbval
     - nibabel
+    - niflow-nipype1-workflows
     - nilearn
-    - nitime
     - nipy
     - nipype
+    - nistats
+    - nitime
+    - nose
+    - pingouin
     - pybids
     - pymvpa2
     - tensorflow
-    - datalad[full]
     - vtk
