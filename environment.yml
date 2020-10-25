@@ -11,7 +11,7 @@ dependencies:
   - matplotlib
   - nb_conda
   - nb_conda_kernels
-  - nbconvert
+  - nbconvert=5
   - nbformat
   - numpy
   - pandas

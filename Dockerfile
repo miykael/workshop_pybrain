@@ -1,6 +1,7 @@
 # Creates the docker container for the workshop in Cambridge
 # Run the container with the following command:
-#   docker run -it --rm -p 8888:8888 miykael/workshop_pybrain
+#   docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
+# And then open the URL http://127.0.0.1:9999/?token=pybrain
 
 FROM miykael/nipype_tutorial:2020
 
@@ -40,6 +41,7 @@ RUN conda install -y -q --name neuro bokeh \
                                      holoviews \
                                      plotly \
                                      dipy \
+                                     nbconvert=5 \
     && sync && conda clean -tipsy && sync \
     && bash -c "source activate neuro \
     && pip install  --no-cache-dir atlasreader \
@@ -73,6 +75,16 @@ RUN bash -c 'source activate neuro \
                                  /data/ds000114/derivatives/freesurfer/sub-01 \
                                  /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips*'
 
+RUN mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_brainmask.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold_space-mni152nlin2009casym_brainmask.nii.gz && \
+    mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold_space-mni152nlin2009casym_preproc.nii.gz && \
+    mv /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
+    mv /data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_run-01_bold.nii.gz
+
 #------------------------------------------------
 # Copy workshop notebooks into image and clean up
 #------------------------------------------------
@@ -104,4 +116,4 @@ USER neuro
 
 WORKDIR /home/neuro
 
-CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token='pybrain'"]
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=pybrain"]
