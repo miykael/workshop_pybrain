@@ -40,9 +40,16 @@ Given that the whole workshop content is more than 8GB in size, the download of 
 
 Once the container is pulled and on your system, you're all good to go. To access the workshop and open the Jupyter Notebook environment, please follow these steps:
 
-1. Open a (docker) terminal and run the following command: `docker run -p 9999:8888 -it --rm miykael/workshop_pybrain`
-2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) to access the workshop content. Should that not work, try [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain).
+1. Open a (docker) terminal and run the following command:
+
+        docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
+
+2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) or [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain) in your web browser to access the workshop content.
 3. Once Jupyter Notebook is open, click on the notebook `program.ipynb` - et voilà.
+
+**Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
+
+<img src="slides/images/jupyter_token.png" height=80>
 
 ### Important notes
 
@@ -55,13 +62,15 @@ For example, something like `docker run -p 9999:8888 -it --rm -v /path/to/your/o
 Here's a more detailed explanation of this full command:
 
 ```bash
-docker run \                   #  start up a container already built or pulled
-    -p 9999:8888  \            #  port used, <local port>:<container port>
-    -it  \                     #  run Docker interactively
-    --rm  \                    #  remove the container when it exits
-    -v /local_folder:/outputs  #  use local files <local path>:<container path>
-    miykael/workshop_pybrain   #  use specified user/project:version container
+docker run \                    #  start up a container already built or pulled
+    -p 9999:8888  \             #  port used, <local port>:<container port>
+    -it  \                      #  run Docker interactively
+    --rm  \                     #  remove the container when it exits
+    -v ~/local_folder:/output   #  use local files <local path>:<container path>
+    miykael/workshop_pybrain    #  use specified user/project:version container
 ```
+
+ **Note**: The path to the folder `/path/to/your/output_folder` needs to be an absolut path (i.e. it cannot be relate). So if you're corrently in the folder `/User/neuro/Desktop/workshop/` and want to give access to a subfolder called `results`. You cannot use `-v results:/output` or `-v ./results:/output`. You either need to use `-v /User/neuro/Desktop/workshop/results:/output` or `-v ~/Desktop/workshop/results:/output`.
 
 #### Memory issues during workshop
 
