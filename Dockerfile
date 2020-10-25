@@ -37,14 +37,15 @@ RUN apt-get update -qq \
 
 USER neuro
 
-RUN conda install -y -q --name neuro bokeh \
+RUN conda install -y -q --name neuro numpy=1.19.0 \
+                                     bokeh \
                                      holoviews \
                                      plotly \
                                      dipy \
                                      nbconvert=5 \
     && sync && conda clean -tipsy && sync \
     && bash -c "source activate neuro \
-    && pip install  --no-cache-dir atlasreader \
+    && pip install --no-cache-dir atlasreader \
                                    fury \
                                    nitime \
                                    nibabel \
