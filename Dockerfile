@@ -7,18 +7,7 @@ FROM miykael/nipype_tutorial:2020
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-#--------------------------------------
-# Update system applications for PyMVPA
-#--------------------------------------
-
 USER root
-
-# Install software for PyMVPA
-RUN apt-get update -qq \
-    && apt-get install -y -q --no-install-recommends \
-           swig \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #------------------------------------
 # Install HarvardOxford atlas via FSL
@@ -38,8 +27,8 @@ RUN apt-get update -qq \
 USER neuro
 
 RUN conda install -y -q --name neuro numpy=1.19.0 \
+                                     scikit-learn \
                                      bokeh \
-                                     holoviews \
                                      plotly \
                                      dipy \
                                      nbconvert=5 \
@@ -54,8 +43,7 @@ RUN conda install -y -q --name neuro numpy=1.19.0 \
                                    pingouin \
                                    matplotlib \
                                    nose \
-                                   git+https://github.com/bids-standard/pybids.git \
-                                   pymvpa2 \
+                                   pybids \
                                    scipy \
                                    tensorflow \
                                    keras \
@@ -98,6 +86,13 @@ RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3
     && rm /data/adhd_data.zip
 
 RUN chown -R neuro /data/adhd
+
+RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6queom/AACgoYuzr8Til-fim0wcwHwEa?dl=1 \
+    && mkdir /data/ds000228 \
+    && unzip /data/ds000228_data.zip -d /data/ds000228/ -x / \
+    && rm /data/ds000228_data.zip
+
+RUN chown -R neuro /data/ds000228
 
 COPY ["program.ipynb", "/home/neuro/program.ipynb"]
 
