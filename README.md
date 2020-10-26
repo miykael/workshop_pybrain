@@ -74,9 +74,9 @@ docker run \                    #  start up a container already built or pulled
 
 #### Memory issues during workshop
 
-It is possible that you might run into some `MemoryError` during the workshop. This has most likely nothing to do with your system, and probably is due to Docker Desktop and it's resource management. By default, Docker Desktop only 2 CPUs and 2 GB of RAM. You can change this default setting by opening Docker Desktop, go to Settings/Preferences > Resources. For a more detailed description see here for [Mac](https://docs.docker.com/docker-for-mac/#resources) and for [Windows](https://docs.docker.com/docker-for-windows/#resources).
+It is possible that you might run into some `MemoryError` messages during the workshop, or that you don't have enough CPUs for parallel process. This has most likely nothing to do with your system, and probably is due to Docker Desktop and it's resource management. By default, Docker Desktop only uses 2 CPUs and 2 GB of RAM. You can change this default setting by opening Docker Desktop, go to Settings/Preferences > Resources. For a more detailed description see here for [Mac](https://docs.docker.com/docker-for-mac/#resources) and for [Windows](https://docs.docker.com/docker-for-windows/#resources).
 
-#### Docker is messy, clean up space
+#### Docker is messy, clean up space afterwards
 
 Docker is a great tool to quickly provide a out-of-the-box running computer environment. However, if you're not carefull, it can quickly create a lot of unwanted files on your machine. To better understand these footprints and to clean out unwanted files after the workshop, please concider the following commands (run from within a (docker) terminal).
 
