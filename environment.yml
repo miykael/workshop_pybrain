@@ -41,7 +41,7 @@ dependencies:
     - nistats
     - nitime
     - nose
-    - pingouin
-    - pybids
+    - pingouin==0.2.4
+    - git+https://github.com/bids-standard/pybids.git
     - tensorflow
     - vtk

@@ -26,7 +26,7 @@ RUN apt-get update -qq \
 
 USER neuro
 
-RUN conda install -y -q --name neuro numpy=1.19.0 \
+RUN conda install -y -q --name neuro numpy=1.18 \
                                      scikit-learn \
                                      bokeh \
                                      plotly \
@@ -40,12 +40,12 @@ RUN conda install -y -q --name neuro numpy=1.19.0 \
                                    nibabel \
                                    nilearn \
                                    nistats \
-                                   pingouin \
+                                   pingouin==0.2.4 \
                                    matplotlib \
                                    nose \
-                                   pybids \
+                                   git+https://github.com/bids-standard/pybids.git \
                                    scipy \
-                                   tensorflow \
+                                   tensorflow==2.2 \
                                    keras \
                                    vtk" \
     && rm -rf ~/.cache/pip/* \
@@ -63,16 +63,6 @@ RUN bash -c 'source activate neuro \
                                  /data/ds000114/sub-0[234789]/ses-test/func/*fingerfootlips* \
                                  /data/ds000114/derivatives/freesurfer/sub-01 \
                                  /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips*'
-
-RUN mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_brainmask.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold_space-mni152nlin2009casym_brainmask.nii.gz && \
-    mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold_space-mni152nlin2009casym_preproc.nii.gz && \
-    mv /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-04/ses-test/func/sub-04_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-08/ses-test/func/sub-08_ses-test_task-fingerfootlips_run-01_bold.nii.gz && \
-    mv /data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_bold.nii.gz /data/ds000114/sub-09/ses-test/func/sub-09_ses-test_task-fingerfootlips_run-01_bold.nii.gz
 
 #------------------------------------------------
 # Copy workshop notebooks into image and clean up
