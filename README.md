@@ -40,9 +40,16 @@ Given that the whole workshop content is more than 8GB in size, the download of 
 
 Once the container is pulled and on your system, you're all good to go. To access the workshop and open the Jupyter Notebook environment, please follow these steps:
 
-1. Open a (docker) terminal and run the following command: `docker run -p 9999:8888 -it --rm miykael/workshop_pybrain`
-2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) to access the workshop content. Should that not work, try [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain).
+1. Open a (docker) terminal and run the following command:
+
+        docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
+
+2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) or [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain) in your web browser to access the workshop content.
 3. Once Jupyter Notebook is open, click on the notebook `program.ipynb` - et voilà.
+
+**Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
+
+<img src="slides/images/jupyter_token.png" height=80>
 
 ### Important notes
 
@@ -55,19 +62,21 @@ For example, something like `docker run -p 9999:8888 -it --rm -v /path/to/your/o
 Here's a more detailed explanation of this full command:
 
 ```bash
-docker run \                   #  start up a container already built or pulled
-    -p 9999:8888  \            #  port used, <local port>:<container port>
-    -it  \                     #  run Docker interactively
-    --rm  \                    #  remove the container when it exits
-    -v /local_folder:/outputs  #  use local files <local path>:<container path>
-    miykael/workshop_pybrain   #  use specified user/project:version container
+docker run \                    #  start up a container already built or pulled
+    -p 9999:8888  \             #  port used, <local port>:<container port>
+    -it  \                      #  run Docker interactively
+    --rm  \                     #  remove the container when it exits
+    -v ~/local_folder:/output   #  use local files <local path>:<container path>
+    miykael/workshop_pybrain    #  use specified user/project:version container
 ```
+
+ **Note**: The path to the folder `/path/to/your/output_folder` needs to be an absolut path (i.e. it cannot be relate). So if you're corrently in the folder `/User/neuro/Desktop/workshop/` and want to give access to a subfolder called `results`. You cannot use `-v results:/output` or `-v ./results:/output`. You either need to use `-v /User/neuro/Desktop/workshop/results:/output` or `-v ~/Desktop/workshop/results:/output`.
 
 #### Memory issues during workshop
 
-It is possible that you might run into some `MemoryError` during the workshop. This has most likely nothing to do with your system, and probably is due to Docker Desktop and it's resource management. By default, Docker Desktop only 2 CPUs and 2 GB of RAM. You can change this default setting by opening Docker Desktop, go to Settings/Preferences > Resources. For a more detailed description see here for [Mac](https://docs.docker.com/docker-for-mac/#resources) and for [Windows](https://docs.docker.com/docker-for-windows/#resources).
+It is possible that you might run into some `MemoryError` messages during the workshop, or that you don't have enough CPUs for parallel process. This has most likely nothing to do with your system, and probably is due to Docker Desktop and it's resource management. By default, Docker Desktop only uses 2 CPUs and 2 GB of RAM. You can change this default setting by opening Docker Desktop, go to Settings/Preferences > Resources. For a more detailed description see here for [Mac](https://docs.docker.com/docker-for-mac/#resources) and for [Windows](https://docs.docker.com/docker-for-windows/#resources).
 
-#### Docker is messy, clean up space
+#### Docker is messy, clean up space afterwards
 
 Docker is a great tool to quickly provide a out-of-the-box running computer environment. However, if you're not carefull, it can quickly create a lot of unwanted files on your machine. To better understand these footprints and to clean out unwanted files after the workshop, please concider the following commands (run from within a (docker) terminal).
 

@@ -11,9 +11,9 @@ dependencies:
   - matplotlib
   - nb_conda
   - nb_conda_kernels
-  - nbconvert
+  - nbconvert=5
   - nbformat
-  - numpy
+  - numpy=1.19.0
   - pandas
   - pip
   - pytest
@@ -22,11 +22,9 @@ dependencies:
   - scipy
   - seaborn
   - statsmodels
-  - swig
   - traits
   - dipy
   - bokeh
-  - holoviews
   - plotly
   - pip:
     - atlasreader
@@ -43,8 +41,7 @@ dependencies:
     - nistats
     - nitime
     - nose
-    - pingouin
-    - pybids
-    - pymvpa2
+    - pingouin==0.2.4
+    - git+https://github.com/bids-standard/pybids.git
     - tensorflow
     - vtk

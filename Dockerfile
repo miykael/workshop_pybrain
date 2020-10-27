@@ -1,23 +1,13 @@
 # Creates the docker container for the workshop in Cambridge
 # Run the container with the following command:
-#   docker run -it --rm -p 8888:8888 miykael/workshop_pybrain
+#   docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
+# And then open the URL http://127.0.0.1:9999/?token=pybrain
 
 FROM miykael/nipype_tutorial:2020
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-#--------------------------------------
-# Update system applications for PyMVPA
-#--------------------------------------
-
 USER root
-
-# Install software for PyMVPA
-RUN apt-get update -qq \
-    && apt-get install -y -q --no-install-recommends \
-           swig \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #------------------------------------
 # Install HarvardOxford atlas via FSL
@@ -36,25 +26,26 @@ RUN apt-get update -qq \
 
 USER neuro
 
-RUN conda install -y -q --name neuro bokeh \
-                                     holoviews \
+RUN conda install -y -q --name neuro numpy=1.18 \
+                                     scikit-learn \
+                                     bokeh \
                                      plotly \
                                      dipy \
+                                     nbconvert=5 \
     && sync && conda clean -tipsy && sync \
     && bash -c "source activate neuro \
-    && pip install  --no-cache-dir atlasreader \
+    && pip install --no-cache-dir atlasreader \
                                    fury \
                                    nitime \
                                    nibabel \
                                    nilearn \
                                    nistats \
-                                   pingouin \
+                                   pingouin==0.2.4 \
                                    matplotlib \
                                    nose \
                                    git+https://github.com/bids-standard/pybids.git \
-                                   pymvpa2 \
                                    scipy \
-                                   tensorflow \
+                                   tensorflow==2.2 \
                                    keras \
                                    vtk" \
     && rm -rf ~/.cache/pip/* \
@@ -86,6 +77,13 @@ RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3
 
 RUN chown -R neuro /data/adhd
 
+RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6queom/AACgoYuzr8Til-fim0wcwHwEa?dl=1 \
+    && mkdir /data/ds000228 \
+    && unzip /data/ds000228_data.zip -d /data/ds000228/ -x / \
+    && rm /data/ds000228_data.zip
+
+RUN chown -R neuro /data/ds000228
+
 COPY ["program.ipynb", "/home/neuro/program.ipynb"]
 
 RUN chown -R neuro /home/neuro
@@ -104,4 +102,4 @@ USER neuro
 
 WORKDIR /home/neuro
 
-CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token='pybrain'"]
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=pybrain"]
