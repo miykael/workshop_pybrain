@@ -18,7 +18,7 @@ dependencies:
   - pip
   - pytest
   - scikit-image
-  - scikit-learn
+  - scikit-learn==0.20
   - scipy
   - seaborn
   - statsmodels
@@ -32,6 +32,7 @@ dependencies:
     - duecredit
     - fury
     - keras
+    - joblib
     - nbval
     - nibabel
     - niflow-nipype1-workflows
@@ -42,6 +43,6 @@ dependencies:
     - nitime
     - nose
     - pingouin==0.2.4
-    - git+https://github.com/bids-standard/pybids.git
+    - pybids==0.8
     - tensorflow
     - vtk

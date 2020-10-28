@@ -45,7 +45,7 @@ Once the container is pulled and on your system, you're all good to go. To acces
         docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
 
 2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) or [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain) in your web browser to access the workshop content.
-3. Once Jupyter Notebook is open, click on the notebook `program.ipynb` - et voilà.
+3. Once Jupyter Notebook is open, double click on the folder `workshop` and open the Jupyter Notebook called `program.ipynb` - et voilà.
 
 **Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
 

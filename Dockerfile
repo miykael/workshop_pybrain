@@ -27,7 +27,7 @@ RUN apt-get update -qq \
 USER neuro
 
 RUN conda install -y -q --name neuro numpy=1.18 \
-                                     scikit-learn \
+                                     scikit-learn==0.20 \
                                      bokeh \
                                      plotly \
                                      dipy \
@@ -36,6 +36,7 @@ RUN conda install -y -q --name neuro numpy=1.18 \
     && bash -c "source activate neuro \
     && pip install --no-cache-dir atlasreader \
                                    fury \
+                                   joblib \
                                    nitime \
                                    nibabel \
                                    nilearn \
@@ -43,7 +44,7 @@ RUN conda install -y -q --name neuro numpy=1.18 \
                                    pingouin==0.2.4 \
                                    matplotlib \
                                    nose \
-                                   git+https://github.com/bids-standard/pybids.git \
+                                   pybids==0.8 \
                                    scipy \
                                    tensorflow==2.2 \
                                    keras \
@@ -84,7 +85,7 @@ RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6q
 
 RUN chown -R neuro /data/ds000228
 
-COPY ["program.ipynb", "/home/neuro/program.ipynb"]
+COPY ["program.ipynb", "/home/neuro/workshop/program.ipynb"]
 
 RUN chown -R neuro /home/neuro
 
