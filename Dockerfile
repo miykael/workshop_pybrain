@@ -40,11 +40,11 @@ RUN conda install -y -q --name neuro numpy=1.18 \
                                    nitime \
                                    nibabel \
                                    nilearn \
-                                   nistats \
+                                   nistats==0.0.1b2 \
                                    pingouin==0.2.4 \
                                    matplotlib \
                                    nose \
-                                   pybids==0.8 \
+                                   pybids==0.10.2 \
                                    scipy \
                                    tensorflow==2.2 \
                                    keras \

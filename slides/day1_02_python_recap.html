@@ -443,8 +443,140 @@ name: questions
 
 # Questions?
 
+---
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Scientific Python
+### ~60min
+---
+name: content
+class: left
+layout: false
+name: intro
+
+## Scientific Python - Part 1
+
+Python has a package for almost everything. As a researcher, you most likely want to know about the following scientific toolboxes:
+
+--
+
+#### `Numpy`
+* **the** fundamental package for computing with Python
+* runs very quickly and is the first step to optimizing your code
+
+--
+
+#### `Scipy`
+
+* Contains many useful modules about
+    - **signal processing**
+    - **multi-dimensional image processing**
+    - **data fitting**
+    - **statistics**
+    - ...
+
+--
+
+#### `Scikit-learn` & `Scikit-image`
+
+* Advanced toolboxes to do **data mining**, **data analysis** and **machine learning**
+
+---
+## Scientific Python - Part 2
+
+#### Statistics with Python
+
+* Python has many great and **open** alternatives to `Excel`, `SPSS` or `R`, such as:
+
+    - `Pandas`
+    - `scipy.stats`
+    - `statsmodels`
+    - `pingouin`
+    - `seaborn`
+
+--
+
+#### Visualize Data with Python
+
+* There are many ways to visualize data in python. Many are based on `matplotlib` (inspired by `MATLAB`).
+* Depending on what you want, you might also want to take a look at:
+
+    - `Seaborn`
+    - `Pandas`
+    - `Bokeh`
+    - `Plotly`
+    - `HoloViews`
+
+---
+
+name: exercise1
+
+.left-column[
+
+## Hands On
+### ~30min
+]
+
+### `Numpy`
+
+Please go through the `Numpy` notebook under [`workshop/notebooks/python_numpy.ipynb`](../../../notebooks/workshop/notebooks/python_numpy.ipynb)
+
+You will not be able to get through everything. Don't worry, we will do a short recap at the end to make sure that we're all on the same page.
+
+--
+#### Important Points about Numpy
+```python
+import numpy as np
+
+# Indexing & Slicing
+>>> data = np.arange(10)
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+>>> data[data%2==0]
+array([0, 2, 4, 6, 8])
+
+# Elementwise operations
+>>> data**2
+array([ 0,  1,  4,  9, 16, 25, 36, 49, 64, 81])
+
+# Basic reductions
+>>> data.std()
+2.8722813232690143
+
+# And much more...
+```
+
+---
+
+.left-column[
+
+## Showcase
+### ~20min
+]
+## Scientific Python
+
+Because of time, we can only have a quick look at the other scientific toolboxes.
+
+`Scipy`: [`workshop/notebooks/python_scipy.ipynb`](../../../notebooks/workshop/notebooks/python_scipy.ipynb).
+
+`Scikit`: [`workshop/notebooks/python_scikit.ipynb`](../../../notebooks/workshop/notebooks/python_scikit.ipynb).
+
+`Statistics`: [`workshop/notebooks/python_statistics.ipynb`](../../../notebooks/workshop/notebooks/python_statistics.ipynb).
+
+`Visualization`: [`workshop/notebooks/python_visualization.ipynb`](../../../notebooks/workshop/notebooks/python_visualization.ipynb).
+
+---
+layout: true
+class: center, middle, inverse
+---
+name: questions
+
+# Questions?
+
     </textarea>
-    <script src="remark-latest.min.js" type="text/javascript">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script>
       var hljs = remark.highlighter.engine;

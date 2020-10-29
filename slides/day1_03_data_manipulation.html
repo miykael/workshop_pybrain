@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scientific Python</title>
+    <title>Data Manipulation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
@@ -170,124 +170,182 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-# Scientific Python
+# Data Manipulation
+## with Nibabel and Nilearn
 ### ~60min
 ---
-name: content
-class: left
-layout: false
 name: intro
+layout: false
 
-## Scientific Python - Part 1
+## Introduction
 
-Python has a package for almost everything. As a researcher, you most likely want to know about the following scientific toolboxes:
+`Nibabel` and `Nilearn` are two python packages that help to load, modify, save and visualize neuroimaging data.
 
---
+* `Nibabel`'s main focus is on loading and saving any kind of neuroimaging data.
 
-#### `Numpy`
-* **the** fundamental package for computing with Python
-* runs very quickly and is the first step to optimizing your code
+* `Nilearn`'s main focus is on statistical learning (based on `scikit-learn`) but is also very good in manipulation and visualizing neuroimaging data.
 
---
-
-#### `Scipy`
-
-* Contains many useful modules about
-    - **signal processing**
-    - **multi-dimensional image processing**
-    - **data fitting**
-    - **statistics**
-    - ...
-
---
-
-#### `Scikit-learn` & `Scikit-image`
-
-* Advanced toolboxes to do **data mining**, **data analysis** and **machine learning**
+* The two software packages together allow you to do almost anything with your MRI data that you want.
 
 ---
-## Scientific Python - Part 2
-
-#### Statistics with Python
-
-* Python has many great and **open** alternatives to `Excel`, `SPSS` or `R`, such as:
-
-    - `Pandas`
-    - `scipy.stats`
-    - `statsmodels`
-    - `pingouin`
-    - `seaborn`
-
---
-
-#### Visualize Data with Python
-
-* There are many ways to visualize data in python. Many are based on `matplotlib` (inspired by `MATLAB`).
-* Depending on what you want, you might also want to take a look at:
-
-    - `Seaborn`
-    - `Pandas`
-    - `Bokeh`
-    - `Plotly`
-    - `HoloViews`
-
----
-
 name: exercise1
 
 .left-column[
 
 ## Hands On
-### ~30min
+### ~15min
+]
+.right-column[
+
+### Nibabel
+Please go now through the jupyter notebook [`workshop/notebooks/image_manipulation_nibabel.ipynb`](../../../notebooks/workshop/notebooks/image_manipulation_nibabel.ipynb).
 ]
 
-### `Numpy`
+---
+name: important
 
-Please go through the `Numpy` notebook under [`workshop/notebooks/python_numpy.ipynb`](../../../notebooks/workshop/notebooks/python_numpy.ipynb)
+##Important Points
 
-You will not be able to get through everything. Don't worry, we will do a short recap at the end to make sure that we're all on the same page.
-
---
-#### Important Points about Numpy
 ```python
-import numpy as np
+# To import the module
+import nibabel as nb
+```
+```python
+# Load a brain image
+img = nb.load('func.nii.gz')
+```
+```python
+# Get Header, affine or data
+img.header, img.affine, img.get_fdata()
+```
+```python
+# Interactively view a brain image
+img.orthoview()
+```
+```python
+# Save a brain image
+new_img = nb.Nifti1Image(data, affine=img.affine, header=img.header)
+nb.save(new_img, '/folder/filename.nii.gz')
+```
 
-# Indexing & Slicing
->>> data = np.arange(10)
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+If you want to investigate a brain image directly from the command line / terminal, use `nib-ls`
 
->>> data[data%2==0]
-array([0, 2, 4, 6, 8])
-
-# Elementwise operations
->>> data**2
-array([ 0,  1,  4,  9, 16, 25, 36, 49, 64, 81])
-
-# Basic reductions
->>> data.std()
-2.8722813232690143
-
-# And much more...
+```
+>>> nib-ls func.nii
+func.nii    int16    [ 64,  64,  30, 184]    4.00x4.00x4.00x2.50    sform
 ```
 
 ---
+name: exercise2
 
 .left-column[
 
-## Showcase
-### ~20min
+## Hands On
+### ~40min
 ]
-## Scientific Python
+.right-column[
 
-Because of time, we can only have a quick look at the other scientific toolboxes.
+### Nilearn
+Please go now through the jupyter notebook [`workshop/notebooks/image_manipulation_nilearn.ipynb`](../../../notebooks/workshop/notebooks/image_manipulation_nilearn.ipynb).
+]
 
-`Scipy`: [`workshop/notebooks/python_scipy.ipynb`](../../../notebooks/workshop/notebooks/python_scipy.ipynb).
+---
+name: important
 
-`Scikit`: [`workshop/notebooks/python_scikit.ipynb`](../../../notebooks/workshop/notebooks/python_scikit.ipynb).
+## Important Points
 
-`Statistics`: [`workshop/notebooks/python_statistics.ipynb`](../../../notebooks/workshop/notebooks/python_statistics.ipynb).
+### 1. Image manipulation with nilearn
 
-`Visualization`: [`workshop/notebooks/python_visualization.ipynb`](../../../notebooks/workshop/notebooks/python_visualization.ipynb).
+```python
+from nilearn import image
+```
+```python
+# Create a mean image
+mean = image.mean_img('func.nii.gz')
+```
+```python
+# Resample mean image to anatomy
+mean_new = image.resample_to_img(mean, anat)
+```
+```python
+# Smooth an image
+smoothed_mean = image.smooth_img(mean, fwhm=4)
+```
+```python
+# Clean image (to improve SNR)
+image.clean_img(func, detrend=True, standardize=False, t_r=TR)
+```
+```python
+# Treat a brain image like a numpy array with
+thr = image.threshold_img(mean, threshold='99%')
+cluster = nilearn.regions.connected_regions(thr)[0]
+mask = nli.math_img('np.mean(img,axis=3) > 0', img=cluster)
+```
+---
+layout: true
+class: left
+---
+
+```python
+# Apply mask
+from nilearn.masking import apply_mask
+all_timecourses = apply_mask(func, mask)
+```
+```python
+# Revert mask
+from nilearn.masking import unmask
+img_timecourse = unmask(all_timecourses, mask)
+```
+```python
+# Perform Independent Component Analysis (ICA)
+from nilearn.decomposition import CanICA
+canica = CanICA(
+    n_components=10, smoothing_fwhm=6, threshold=3.,
+    verbose=10, random_state=0, n_jobs=-1, standardize=True)
+canica.fit(func)
+```
+```python
+# Perform Dictionary Learning
+from nilearn.decomposition import DictLearning
+dict_learning = DictLearning(
+    n_components=10, n_epochs=1, alpha=1., smoothing_fwhm=6,
+    standardize=True, verbose=1, random_state=0, n_jobs=-1)
+canica.fit(dict_learning)
+```
+---
+### 2. Image visualization with nilearn
+
+```python
+from nilearn import plotting
+```
+```python
+# Plot Glass Brain
+plotting.plot_glass_brain(
+    func_tmap, threshold=3, colorbar=True, title='fancy title',
+    plot_abs=False, display_mode='lyrz')
+```
+```python
+# Overlay functional image onto anatomical image
+plotting.plot_stat_map(func_tmap, display_mode='z', cut_coords=5,
+                       threshold=2, title="fancy title")
+```
+```python
+# Overlay two images ontop of each other
+plotting.plot_roi('anat1.mgz', 'anat2.nii.gz',
+                  dim=-1, cut_coords=(0, 0, 0))
+```
+```python
+# Create plots with edges
+display = plotting.plot_anat(mean, dim=-0.5)
+display.add_edges(t1, color='r')
+```
+```python
+# Create 3D Surface Plot
+plotting.plot_surf_stat_map(
+    fsaverage.infl_right, texture, hemi='right', title='fancy title',
+    threshold=1., bg_map=fsaverage.sulc_right, view='lateral', cmap='cold_hot')
+plotting.show()
+```
 
 ---
 layout: true
@@ -298,7 +356,7 @@ name: questions
 # Questions?
 
     </textarea>
-    <script src="remark-latest.min.js" type="text/javascript">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script>
       var hljs = remark.highlighter.engine;
