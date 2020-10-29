@@ -39,10 +39,10 @@ dependencies:
     - nilearn
     - nipy
     - nipype
-    - nistats
+    - nistats==0.0.1b2
     - nitime
     - nose
     - pingouin==0.2.4
-    - pybids==0.8
+    - pybids==0.10.2
     - tensorflow
     - vtk
