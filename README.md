@@ -13,6 +13,38 @@
 
 This repository contains everything you'll need for the [pybrain workshop](https://pybrain-workshop.github.io/) "MRI analysis in Python using Nipype, Nilearn and more" in Cambridge 2020, 9th to 10th of November.
 
+
+## Schedule
+
+Registration for this workshop can be done via [pybrain-workshop.github.io](https://pybrain-workshop.github.io/) (**Update**: Course is unfortunately already fully booked!)
+
+This 2-day workshop runs from 09:30 to 15:30 on both days. Lunch breaks are scheduled from 12:00 to 13:00. Individual short breaks can be taken during the multiple independent excersie sessesion throughout the workshop.
+
+The scheudle might still be subject to some small changes, but the bigger picture looks as follows.
+
+
+### 9th November
+* `09:30-10:00` - Workshop overview
+* `10:00-10:30` - Quick recap on Jupyter, Python and more\*
+* `10:30-12:00` - Explore MRI data with Nibabel and Nilearn
+* `12:00-13:00` - Lunch
+* `13:00-13:30` - How to set up your system, using Conda and Docker
+* `13:30-15:00` - Functional connectivity and machine learning
+* `15:00-15:30` - Innovations in neuroimaging tools (Part I)
+* `15:30-...` - Open ended for questions
+
+### 10th November
+* `09:30-10:00` - Introduction to Nipype
+* `10:00-11:00` - Exploration of Nipype's building blocks
+* `11:00-12:00` - Creating a Nipype Pipeline from A-Z
+* `12:00-13:00` - Lunch
+* `13:00-14:00` - PyBIDS and Nistats
+* `14:00-15:00` - Multivariate pattern analysis using Searchlight and Deep Learning
+* `15:00-15:30` - Innovations in neuroimaging tools (Part 2)
+* `15:30-...` - Open ended for questions
+
+## Accessing workshop content (interactively or static)
+
 There are three ways how you can profit from this workshop:
 
 1. Via **Docker** (recommened): **Full** workshop experience, **interactive**, with **all software dependencies**.
