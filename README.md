@@ -3,10 +3,7 @@
 # Workshops Cambridge - 2020
 
 [![CircleCi](https://circleci.com/gh/miykael/workshop_pybrain.svg?style=shield)](https://circleci.com/gh/miykael/workshop_pybrain/tree/master)
-[![GitHub issues](https://img.shields.io/github/issues/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/pulls/)
 [![GitHub contributors](https://img.shields.io/github/contributors/miykael/workshop_pybrain.svg)](https://GitHub.com/miykael/workshop_pybrain/graphs/contributors/)
-[![GitHub Commits](https://github-basic-badges.herokuapp.com/commits/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/commits/master)
 [![GitHub size](https://github-size-badge.herokuapp.com/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/archive/master.zip)
 [![Docker Hub](https://img.shields.io/docker/pulls/miykael/workshop_pybrain.svg?maxAge=2592000)](https://hub.docker.com/r/miykael/workshop_pybrain/)
 [![GitHub HitCount](http://hits.dwyl.io/miykael/workshop_pybrain.svg)](http://hits.dwyl.io/miykael/workshop_pybrain)
