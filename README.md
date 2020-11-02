@@ -21,8 +21,8 @@ The scheudle might still be subject to some small changes, but the bigger pictur
 
 ### 9th November
 * `09:30-10:00` - Workshop overview
-* `10:00-10:30` - Quick recap on Jupyter, Python and more\*
-* `10:30-12:00` - Explore MRI data with Nibabel and Nilearn
+* `10:00-10:45` - Quick recap on Jupyter, Python and more\*
+* `10:45-12:00` - Explore MRI data with Nibabel and Nilearn
 * `12:00-13:00` - Lunch
 * `13:00-13:30` - How to set up your system, using Conda and Docker
 * `13:30-15:00` - Functional connectivity and machine learning
