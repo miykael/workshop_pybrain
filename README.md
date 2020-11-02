@@ -70,9 +70,9 @@ Once the container is pulled and on your system, you're all good to go. To acces
 
 1. Open a (docker) terminal and run the following command:
 
-        docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
+        docker run -p 8888:8888 -it --rm miykael/workshop_pybrain
 
-2. Open [http://127.0.0.1:9999/?token=pybrain](http://127.0.0.1:9999/?token=pybrain) or [http://localhost:9999/?token=pybrain](http://localhost:9999/?token=pybrain) in your web browser to access the workshop content.
+2. Open [http://127.0.0.1:8888/?token=pybrain](http://127.0.0.1:8888/?token=pybrain) or [http://localhost:8888/?token=pybrain](http://localhost:8888/?token=pybrain) in your web browser to access the workshop content.
 3. Once Jupyter Notebook is open, double click on the folder `workshop` and open the Jupyter Notebook called `program.ipynb` - et voilà.
 
 **Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
@@ -85,13 +85,13 @@ Once the container is pulled and on your system, you're all good to go. To acces
 
 Everything you do within this docker container will be reset the moment you terminate the `docker run ...` command in step one (or you close this terminal). This means, any output file created within the docker container will be deleted. Similarly, any notes and changes within the notebooks will be lost. To prevent this from happening, either (1) manually download the changed notebooks (i.e. File > Download As > Notebook (.ipynb)) or (2) create a common folder within the container and on your system and allow a direct transition of data by adding the `-v` flag to the `docker run ...` command.
 
-For example, something like `docker run -p 9999:8888 -it --rm -v /path/to/your/output_folder:/output miykael/workshop_pybrain`, where `/path/to/your/output_folder` should be an empty folder on your system, such as `/User/neuro/Desktop/output`.
+For example, something like `docker run -p 8888:8888 -it --rm -v /path/to/your/output_folder:/output miykael/workshop_pybrain`, where `/path/to/your/output_folder` should be an empty folder on your system, such as `/User/neuro/Desktop/output`.
 
 Here's a more detailed explanation of this full command:
 
 ```bash
 docker run \                    #  start up a container already built or pulled
-    -p 9999:8888  \             #  port used, <local port>:<container port>
+    -p 8888:8888  \             #  port used, <local port>:<container port>
     -it  \                      #  run Docker interactively
     --rm  \                     #  remove the container when it exits
     -v ~/local_folder:/output   #  use local files <local path>:<container path>

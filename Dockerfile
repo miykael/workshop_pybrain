@@ -1,7 +1,7 @@
 # Creates the docker container for the workshop in Cambridge
 # Run the container with the following command:
-#   docker run -p 9999:8888 -it --rm miykael/workshop_pybrain
-# And then open the URL http://127.0.0.1:9999/?token=pybrain
+#   docker run -p 8888:8888 -it --rm miykael/workshop_pybrain
+# And then open the URL http://127.0.0.1:8888/?token=pybrain
 
 FROM miykael/nipype_tutorial:2020
 
