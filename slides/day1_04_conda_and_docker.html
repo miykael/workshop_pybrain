@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Conda & Docker</title>
+    <title>Conda and Docker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
@@ -170,78 +170,183 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-# Conda & Docker
+# Virtualization
 ## How to setup the right computation environment
-### ~45min
+### ~30min
+
 
 ---
-name: content
-class: left
 layout: false
-name: intro
+##<span style="color:purple">Outline</span>
 
-## What is the Problem?
+- ### Learning objectives
+- ### Requirements
+- ### Introduction
+- ### Tools
+- ### Exercises
 
-- Each project in a lab depends on complex software environments (OS, drivers, software dependencies)
+---
+
+## <span style="color:purple">Learning objectives</span>
+
+- ### Why do we use virtualization?
+
+- ### What are the various types of virtualization?
+
+- ### How to use `venv` and `conda`?
+
+- ### How to use `Docker`?
 
 &nbsp;
+
 --
 
-- Problems connected with **reproducibility**:
+## <span style="color:purple">Requirements</span>
 
-    - *The computer I used was shut down a year ago. Now I can’t rerun the results from my publication...*
+- ### Your computer: `venv`, `pip`, `conda`, `Docker`
 
-    - *The analysis was run by my student, have no idea where and how...*
+- ### You: `shell` / `Terminal`
+
+
+---
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Introduction
+
+---
+layout: false
+
+### <span style="color:purple">Virtualization technologies</span>
+
 
 &nbsp;
---
 
-- Problems connected with **collaborations**:
+- ### Isolate the computing environments
 
-    - *I forgot to mention that you have to use Clang, gcc never worked for me...*
+&nbsp;
 
-    - *It works on my computer...*
-
-    - *Which version did you install?*
+- ### Provide a mechanism to encapsulate environments in a self-contained unit that can run anywhere
 
 ---
 
-## How can we solve this?
+### <span style="color:purple">Why do we need virtualization?</span>
 
-We need to provide a mechanism to encapsulate environments in a self-contained unit that can run anywhere.
+### Science Reproducibility
 
-The goal is to...
+  - Each project in a lab depends on complex software environments
 
-  - **Isolate** the computing environment
+    - operating system
+    - drivers
+    - software dependencies: Python/MATLAB/R + libraries
 
-  - **Allow reconstructing** computing environments
-
-  - **Allow sharing** your computing environments
+&nbsp;
 
 --
 
-## The solution
+  - We try to avoid
 
-For a **pure Python** environment: Use [Conda](https://conda.io/docs/)
+    - the computer I used was shut down a year ago, can’t rerun the results from my publication...
+    - the analysis were run by my student, have no idea where and how...
+    - etc.
+---
+### <span style="color:purple"> Why do we need virtualization?</span>
 
-<img src="images/conda_logo.svg" height="50" />
+### Collaboration with your colleagues
 
-For a **more complex** computation environment: Use [Docker](https://www.docker.com/) (or [Singularity](https://www.sylabs.io/))
+- Sharing your code or using a repository might not be enough
+&nbsp;
 
- <img src="images/docker_logo.png" height="75" />
+--
+
+- We try to avoid
+  - well, I forgot to mention that you have to use Clang, gcc never worked for me...
+  - don’t see any reason why it shouldn’t work on Windows...(I actually have no idea about Windows, but won’t say it...)
+  - **it works on my computer...**
+  - etc.
 
 ---
-### What is [Conda](https://conda.io/docs/)?
+###<span style="color:purple">Why do we need virtualization?</span>
 
-  - A package manager and an environment manager that allows the creation of a contained python environment
+### Freedom to experiment!
 
-  - It doesn't affect other Python environments / installations
+- Universal Install Script from xkcd: *The failures usually don’t hurt anything...*
+ And usually all your old programs work...
 
-  - Install [Miniconda](https://conda.io/miniconda.html) for a minimalistic conda environment and [Anaconda](https://www.anaconda.com/download) for a more complete one (with basic packages already pre-installed)
+<img src="images/universal_install_script_2x.png" width="35%" />
 
+- We try to avoid
+  - I just want to undo the last five hours of my life...
+
+---
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Tools
+---
+layout: false
+
+### <span style="color:purple">Types of virtualization</span>
+
+#### Three main types
+
+  - pure python virtualization
+
+      - venv
+      - conda
+
+  - Containers:
+
+      - Docker
+      - Singularity
+
+  - Virtual Machines:
+
+      - Virtualbox
+      - VMware
+      - AWS, Google Compute Engine, ...
+
+
+&nbsp;
 
 ---
 
+#### <span style="color:purple">Main ideas</span>
+
+  - Isolate the computing environment
+
+  - Allow reconstructing computing environments
+
+  - Allow sharing your computing environments
+
+<img src="https://raw.githubusercontent.com/goanpeca/pyday-cali-2019/master/img_source/isolation.png" width="70%" />
+
+
+---
+### <span style="color:purple">Virtualization in python - environments using `venv` and `conda`</span>
+
+#### Virtual environments
+
+  - keep the dependencies required by different projects in separate places
+
+  - allows to work with specific versions of libraries or Python itself without affecting other Python projects
+
+#### [venv](https://docs.python.org/3/library/venv.html)
+
+  - an environment manager for python 3.4 and up
+
+  - preinstalled
+
+#### [Conda](https://conda.io/docs/)
+
+  - A package manager and an environment manager
+
+  - `conda` is quickest installed with [Miniconda](https://conda.io/miniconda.html). Miniconda installes only the most basic python packages.
+
+  - If you want a conda environment with many usefull packages already preinstalled, we recommend to download [Anaconda](https://www.anaconda.com/download).
+---
 ### How to use conda?
 
 ```bash
@@ -276,39 +381,37 @@ conda env list
 conda remove --name my_new_py36 --all
 ```
 ---
+###<span style="color:purple">Containers - Docker</span>
+  - leading software container platform
+  - an open-source project
+  - **it runs on Linux, Mac OS X and Windows**
 
-## What is Docker?
+--
 
-- Leading software container platform
 
-- Open-source / Free
+  - share the host system’s kernel with other containers
+  - each container gets its own isolated user space
+  - only bins and libs are created from scratch
+  - **containers are very lightweight and fast to start up**
 
-- Runs on Linux, Mac OS X, and Windows
+
+--
+
+#### Testing your Docker installation:
+  ```bash
+  docker run hello-world
+  ```
+--
 
 &nbsp;
---
 
-## How does it work?
+#### Interesting tutorials and blog posts:
 
-- Docker needs a `Dockerfile` containing the relevant installation commands
-
-  ```bash
-  FROM ubuntu:latest
-  RUN apt-get update -y
-  RUN apt-get install -y -q --no-install-recommends git
-  ```
-
---
-
-- With this `Dockerfile` present, creating and running a new container is very simple
-
-  ```bash
-  docker build -t my_new_container .
-  docker run -it --rm my_new_container
-  ```
+- [A beginner friendly intro to VMs and Docker](https://medium.freecodecamp.com/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b#.3giab6wvo)
+- [Intro to Docker from Neurohackweek](https://neurohackweek.github.io/docker-for-scientists/)
+- [Understanding Images](https://code.tutsplus.com/tutorials/docker-from-the-ground-up-understanding-images--cms-28165)
 
 ---
-
 ## Why is this so great?
 
 - A docker container is a closed environment and will use the exact same software versions, drivers etc. independent from the system it runs on.
@@ -338,9 +441,6 @@ conda remove --name my_new_py36 --all
         --workdir /home/neuro > Dockerfile
   ```
 
---
-
-- [Singularity](https://www.sylabs.io/): Docker alternative for computation clusters, as docker can escalate root privileges
 
 ---
 
@@ -414,8 +514,59 @@ conda remove --name my_new_py36 --all
   docker run -it --rm -v /path/to/my_folder:/my_folder:ro ubuntu
   ```
 
----
+--
 
+- for more on Docker, please have a look at this [one-day workshop](https://github.com/PeerHerholz/docker_workshop)
+
+---
+### <span style="color:purple">Containers - Docker and Singularity</span>
+
+#### Docker:
+
+  - docker can escalate privileges, so you can be effectively treated as a root on the host system
+  - this is usually  not supported by administrators from HPC centers
+
+--
+
+#### Singularity:
+  - a container solution created for scientific and application driven workloads
+  - supports existing and traditional HPC resources
+  - a user inside a Singularity container is the same user as outside the container
+  - but you can use Vagrant to create a container (you have root privileges on your VM!)
+  - can run (and modify!) existing Docker containers
+  ```bash
+  sudo singularity shell --writable <repository>
+  ```
+  - running VM is required on OSX
+  - [Satra's presentation](http://satra.cogitatum.org/om-images/)
+  - [other tutorials](http://singularity.lbl.gov/tutorials)
+
+---
+### <span style="color:purple">Virtualization - Virtual Machines vs Containers</span>
+
+<img src="images/Containers-vs-Virtual-Machines.jpg" width="80%" />
+
+--
+
+ **Virtual Machines**
+  - emulate whole computer system (software+hardware)
+  - run on top of a physical machine using a *hypervisor*
+  - *hypervisor* shares and manages hardware of the host and executes the guest operating system
+  - guest machines are completely isolated and have dedicated resources
+---
+### <span style="color:purple">Virtualization - Virtual Machines vs Containers</span>
+
+  <img src="images/Containers-vs-Virtual-Machines.jpg" width="80%" />
+
+--
+
+ **Docker**
+  - share the host system’s kernel with other containers
+  - each container gets its own isolated user space
+  - only bins and libs are created from scratch
+  - **containers are very lightweight and fast to start up**
+
+---
 name: inverse
 layout: true
 class: center, middle, inverse
