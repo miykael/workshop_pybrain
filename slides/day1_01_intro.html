@@ -169,43 +169,35 @@
 layout: true
 class: center, middle
 ---
-# Using python for neuroscience
+# MRI analysis in Python
+# using Nipype, Nilearn and more
 <img src="images/nipype_logo.svg" height="300px"/>
-## Marburg, September 2019
+## Cambridge (zoom), November 2020
 ##### License: CC0 | Image credit: Arno Klein
 ---
 layout: false
-.left-column2[
-## Objectives
 
-## Your Role
-
-## Schedule
-
-## Logistics
-
-## meet & greet
-]
----
 .left-column[
 ## Objectives
 ]
 .right-column[
 
-#### Gain Skills
-- using python for diverse neuroscientific analyses
-- Empower you with tools and technologies to do reproducible, scalable, and efficient research
+### Gain Skills
+- use Python for diverse neuroscientific analyses
 
-#### Get Involved
-- Familiarize you with the Python ecosystem for scientific work
-- Become an active part of a fun & fast growing movement
+- Empower yourself with tools and technologies to do reproducible, scalable, and efficient research
 
-#### Be Social
+### Get Involved
+- Familiarize yourself with a great Python ecosystem for scientific work
+
+- Become an active part of a fun & fast growing community
+
+### Be Social
 - Interact with each other, help each other and learn from each other
+
 - Get to know other participants and their projects
 
-#### Share
-- Bring everything you've learnend to your home institution
+- Share these new tools and resources with others
 
 ]
 ---
@@ -215,19 +207,24 @@ layout: false
 ]
 .right-column[
 
-- **Interrupt and ask questions**
+**Ask questions and give feedback**  
+(via [sli.do](https://app.sli.do/event/cevy3wif/live/questions) and in the zoom chat)
 
-- Use the google doc [here](https://docs.google.com/document/d/1ESy1OXgVi3lgi7IW-RONjUbvOcDYkO0Fx6qXiEKSXBA/edit?usp=sharing) to interact with us and other participants. Ask questions, help others and give feedback.
+&nbsp;
 
-- The google doc is also a great way to take and share notes
+Help each other out
 
-- Help each other out
+&nbsp;
 
-- Tell us about cool things that you are working on or you are aware of
+Tell us about cool things that you are working on or you are aware of
 
-- Talk to everyone
+&nbsp;
 
-- Give us feedback and help improve the lectures
+If possible interact with everyone and be active
+
+&nbsp;
+
+Give us feedback and help improve the lectures
 ]
 ---
 .left-column[
@@ -236,19 +233,19 @@ layout: false
 ]
 .right-column[
 
-**Be aware of 3 important points:**
+### Be aware of 2 important points
 
-- this is a 2 day workshop, intended to show you the absolute basics of an unbelievably broad ecosystem and it's possibilities:
+**First**, this is a 2 day workshop, intended to show you the absolute basics of an unbelievably broad ecosystem and it's possibilities:
 
-  - a lot of the thinks will be completly new and/or different from what you did/how you worked so far
+  - a lot of the things will be completly new and/or different from what you did/how you worked so far
 
   - don't expect to understand and know everything about everything we'll talk about after the 2 days
 
   - it's about knowing what's out there, how it can be done and why it's useful
 
-  - if you want to get the most out of it, show up, be committed and start using what you'll see and hear here in your own research, otherwise you never gonna learn it
+  - if you want to get the most out of it, show up, be committed and start using what you'll see and hear here in your own research
 
-  - thinks take time, but it's definitely worth the effort and one of the best research communities has your back
+  - things take time, but it's definitely worth the effort and one of the best research communities has your back
 
 ]
 ---
@@ -258,15 +255,15 @@ layout: false
 ]
 .right-column[
 
-**Be aware of 3 important points:**
+### Be aware of 2 important points
 
-- it's your work, take responsibility:
+**Second**, it's your work, take responsibility:
 
   - no one can know/be an expert in everything and that's okay
 
   - however, you need have a basic understand of what you're doing and why you're doing it
 
-  - a lot of the neuroimaging software out there let do you a lot of stuff by "just clicking buttons", which is dangerous and (very often) prevents a deeper understanding
+  - a lot of the tools out there let you do a lot of stuff by "just clicking buttons", which is dangerous and (very often) prevents a deeper understanding
 
   - the tools presented here usually require you to think way more about your data and the analyses you want to apply, but are yet very easy to use
 
@@ -277,56 +274,30 @@ layout: false
 .left-column[
 ## Objectives
 ## Your Role
+## Schedule*
+*optimistic
 ]
 .right-column[
+**9th November**
+- `09:30-10:00` - Workshop overview
+- `10:00-10:30` - Quick recap on Jupyter, Python & more
+- `10:30-12:00` - Explore MRI data with Nibabel & Nilearn
+- `13:00-13:30` - Setup your system with Conda & Docker
+- `13:30-15:00` - Functional connectivity and machine learning
+- `15:00-15:30` - Innovations in neuroimaging tools (I)
 
-**Be aware of 3 important points:**
+**10th November**
+- `09:30-10:00` - Introduction to Nipype
+- `10:00-11:00` - Exploration of Nipype's building blocks
+- `11:00-12:00` - Creating a Nipype Pipeline from A-Z
+- `13:00-14:00` - PyBIDS and Nistats
+- `14:00-15:00` - Multivariate pattern analysis using Searchlight and Deep Learning
+- `15:00-15:30` - Innovations in neuroimaging tools (II)
 
-- BE NICE AND RESPECTFUL TO THE IT FOLKS:
-
-  - your lab's/institute's/university's IT is not there to make all your dreams come true (even if they do)
-
-  - don't expect them to do your work, implement everything you want or provide 24/7 support for everything that's out there
-
-  - these folks have to guarantee that the infrastructure is working for the majority of people in a stable and robust manner
-
-  - talk to them, asking what's possible and what's not
-
-  - don't go snitching to the "bosses", but work together and try your best to also support the IT folks
-
-]
----
-.left-column[
-## Objectives
-## Your Role
-## Schedule
-]
-.right-column[
-- our current optimistic schedule can be found [here](https://nbviewer.jupyter.org/github/PeerHerholz/workshop_magdeburg/blob/master/program.ipynb)
-]
----
-.left-column[
-## Objectives
-## Your Role
-## Schedule
-## Logistics
-]
-.right-column[
-- Able to get Docker up and running
-
-  - Able to `pull` docker containers
-
-- The sessions may take up to 10 - 15G of space
-
-  - Come talk to us if you don't have that much or think you will run out
-
-- All materials and notes are available online on [github](https://github.com/PeerHerholz/workshop_magdeburg)
-
-- Use the communication channels:
-
-  - Take notes online [here](https://docs.google.com/document/d/10Bh0hnVeczhSphwAerVDQ4XFuP_Kzx_wxDxy0N3WGss/edit?usp=sharing)
-  - Provide feedback whenever you have any
-  - Ask us and other participants for help
+**Both days**
+- Program from `09:30-12:00` and `13:00-15:30`
+- Lunch from `12:00-13:00`
+- After `15:30`, open ended for questions and discussions
 ]
 
 ---
@@ -335,18 +306,65 @@ layout: false
 ## Your Role
 ## Schedule
 ## Logistics
-## meet & greet
 ]
 .right-column[
-### Doctor who?
 
-- your lovely and kind instructors
+#### Workshop material
 
+- All materials and notes are available online on  
+[github.com/miykael/workshop_pybrain](https://github.com/miykael/workshop_pybrain)
 
+#### Use communication channels
+- Ask questions on [sli.do](https://app.sli.do/event/cevy3wif/live/questions) (prefered) or zoom
+- Ask us and other participants for help
+- Provide feedback whenever you have any
 
-- tell the gang something about you:
+#### Docker setup for workshop
 
-  - who are you? what are you working on? why are you interested in this workshop (something besides "I had to go" or "it was cheap") ?
+- You'll need docker installed and running,  
+test setup with `docker run hello-world`
+
+- Pull/Update docker image for workshop with  
+`docker pull miykael/workshop_pybrain`
+
+- The docker image might take up to 10GB of space
+
+- Come talk to us if you don't have that much, think you will run out or have other questions
+]
+
+---
+.left-column[
+## Objectives
+## Your Role
+## Schedule
+## Logistics
+## Us
+]
+.right-column[
+
+### Who are we?
+
+**Michael Notter** (EPFL, Switzerland)
+
+Instructor | [GitHub](https://github.com/miykael) | [Twitter](https://twitter.com/miyka_el) | [homepage](https://miykael.github.io/)
+
+&nbsp;
+
+**Peer Herholz** (McGill University, Canada)
+
+Instructor | EPFL | [GitHub](https://github.com/peerherholz) | [Twitter](https://twitter.com/peerherholz) | [homepage](https://peerherholz.github.io/)
+
+&nbsp;
+
+**Johan Carlin** (University of Cambridge, UK)
+
+Organizer | [GitHub](https://github.com/jooh) | [Twitter](https://twitter.com/johancarlin) | [homepage](https://www.neuroscience.cam.ac.uk/directory/profile.php?jdc55)
+
+&nbsp;
+
+**Olaf Hauk** (University of Cambridge, UK)
+
+Organizer | [GitHub](https://github.com/olafhauk) | [Twitter](https://twitter.com/olafhauk) | [homepage](https://www.neuroscience.cam.ac.uk/directory/profile.php?olafhauk)
 
 ]
 

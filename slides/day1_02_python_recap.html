@@ -170,9 +170,10 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-# Short introduction to Python
-# & Jupyter Notebook
-### ~60min
+# Quick recap on Python,
+# Jupyter Notebooks
+# and more
+### ~30min
 ---
 name: content
 class: left
@@ -233,127 +234,6 @@ name: intro
 
 ---
 
-name: jupyter
-
-## Jupyter Notebook - to program
-
-Open-source web application that allows to create and share documents that contain live code, equations, visualizations, and narrative text.
-
-Jupyter Notebooks was created for Python, but can also be used for other programming languages, such as `R`, `Julia`, `Scala`, `HTML`, etc.
-
-<img src="images/jupyterpreview.png" width="75%" />
-
----
-
-name: anaconda
-
-## Conda - to get Python and other packages
-
-The best way to get a good, stable and flexible Python environment on your system is [Conda](https://conda.io/docs/).
-
-&nbsp;
-
-Conda gives you access to almost all python packages that you need. For the rest use `pip` or `git`.
-
---
-
-&nbsp;
-
-Install a minimalistic conda environment with [Miniconda](https://conda.io/miniconda.html) and a more complete one, with the basic packages already pre-installed with [Anaconda](https://www.anaconda.com/download).
-
---
-
-&nbsp;
-
-Conda allows you to have multiple Python environments next to each.
-
----
-
-name: exercise
-
-.left-column[
-
-## Hands On
-### ~5min
-]
-
-## Jupyter Notebook
-
-Please go through the Jupyter Notebook introduction under [`nipype_tutorial/notebooks/introduction_jupyter-notebook.ipynb`](../../../notebooks/nipype_tutorial/notebooks/introduction_jupyter-notebook.ipynb).
-
-***Note:*** Open the link with right-click and select "open link in new tab".
-
----
-
-name: important
-
-## Jupyter Notebook - Important to know
-
-- How to create a new notebook?
-
-- Add a new cell ***above*** with `a` or ***below*** with `b`. Make sure that you escaped the current cell with `ESC`
-
-- Execute a cell with `SHIFT+Enter`
-
-- Switch between text and code with `y` and `m`
-
-- Save Jupyter Notebook as PDF, HTML, python script
-
-- Stop computation with the stop button or under `Kernel > Interrupt`
-
-- Restart kernel with `Kernel > Restart`
-
-- Change kernel with `Kernel > Change kernel`
-
-- For anything else, look into `Shortcuts`
-
-- Jupyter notebook even provides a `Terminal` (allows you to install additional packages)
-
----
-
-name: whygood
-
-## Jupyter Notebooks are especially great for research!
-
-Increase the learning curve in Python
-
-&nbsp;
-
---
-
-Great tool to share data, results, and code
-
-- Great for open & reproducible science
-
-- See for example the [LIGO results](https://losc.ligo.org/tutorials/)
-
-&nbsp;
-
---
-
-Great for teaching
-
-- Interactive Notebooks via [mybinder](https://mybinder.org/) or [Google Colaboratory](https://colab.research.google.com)
-
-- See this workshop (hopefully)
-
----
-
-name: exercise
-
-.left-column[
-
-## Hands On
-### ~30min
-]
-
-## Python Basics
-
-Please go through the notebook about Python basics under [`nipype_tutorial/notebooks/introduction_python.ipynb`](../../../notebooks/nipype_tutorial/notebooks/introduction_python.ipynb).
-
-Don't worry if you don't get through everything. We will do a short recap at the end to make sure that we're all on the same page.
-
----
 name: important1
 class: left
 layout: false
@@ -369,7 +249,7 @@ name: intro
 --
 ```python
 # Variable assignment and variable type
->>> text = 'Frankfurt'  # Type string
+>>> text = 'Cambridge'  # Type string
 >>> number1 = 5         # Type integer
 >>> number2 = 5.0       # Type float
 >>> number1 == number2  # Type boolean
@@ -436,25 +316,95 @@ for i in range(-5, 20):
 ```
 
 ---
-layout: true
-class: center, middle, inverse
----
-name: questions
 
-# Questions?
+name: anaconda
+
+## Conda - to get Python and other packages
+
+The best way to get a good, stable and flexible Python environment on your system is [Conda](https://conda.io/docs/).
+
+&nbsp;
+
+Conda gives you access to almost all python packages that you need. For the rest use `pip` or `git`.
+
+--
+
+&nbsp;
+
+Install a minimalistic conda environment with [Miniconda](https://conda.io/miniconda.html) and a more complete one, with the basic packages already pre-installed with [Anaconda](https://www.anaconda.com/download).
+
+--
+
+&nbsp;
+
+Conda allows you to have multiple Python environments next to each.
+---
+
+name: jupyter
+
+## Jupyter Notebook - to program
+
+Open-source web application that allows to create and share documents that contain live code, equations, visualizations, and narrative text.
+
+Jupyter Notebooks was created for Python, but can also be used for other programming languages, such as `R`, `Julia`, `Scala`, `HTML`, etc.
+
+<img src="images/jupyterpreview.png" width="75%" />
 
 ---
-name: inverse
-layout: true
-class: center, middle, inverse
+
+name: important
+
+## Jupyter Notebook - Important to know
+
+- How to create a new notebook?
+
+- Add a new cell ***above*** with `a` or ***below*** with `b`. Make sure that you escaped the current cell with `ESC`
+
+- Execute a cell with `SHIFT+Enter`
+
+- Switch between text and code with `y` and `m`
+
+- Save Jupyter Notebook as PDF, HTML, python script
+
+- Stop computation with the stop button or under `Kernel > Interrupt`
+
+- Restart kernel with `Kernel > Restart`
+
+- Change kernel with `Kernel > Change kernel`
+
+- For anything else, look into `Shortcuts`
+
+- Jupyter notebook even provides a `Terminal` (allows you to install additional packages)
+
 ---
-# Scientific Python
-### ~60min
+
+name: whygood
+
+## Jupyter Notebooks are especially great for research!
+
+Increase the learning curve in Python
+
+&nbsp;
+
+--
+
+Great tool to share data, results, and code
+
+- Great for open & reproducible science
+
+- See for example the [LIGO results](https://losc.ligo.org/tutorials/)
+
+&nbsp;
+
+--
+
+Great for teaching
+
+- Interactive Notebooks via [mybinder](https://mybinder.org/) or [Google Colaboratory](https://colab.research.google.com)
+
+- See this workshop (hopefully)
+
 ---
-name: content
-class: left
-layout: false
-name: intro
 
 ## Scientific Python - Part 1
 
@@ -463,7 +413,7 @@ Python has a package for almost everything. As a researcher, you most likely wan
 --
 
 #### `Numpy`
-* **the** fundamental package for computing with Python
+* **THE** fundamental package for computing with Python
 * runs very quickly and is the first step to optimizing your code
 
 --
@@ -507,25 +457,12 @@ Python has a package for almost everything. As a researcher, you most likely wan
     - `Pandas`
     - `Bokeh`
     - `Plotly`
-    - `HoloViews`
 
 ---
 
-name: exercise1
+## `Numpy` - Important to know
 
-.left-column[
-
-## Hands On
-### ~30min
-]
-
-### `Numpy`
-
-Please go through the `Numpy` notebook under [`workshop/notebooks/python_numpy.ipynb`](../../../notebooks/workshop/notebooks/python_numpy.ipynb)
-
-You will not be able to get through everything. Don't worry, we will do a short recap at the end to make sure that we're all on the same page.
-
---
+```python
 #### Important Points about Numpy
 ```python
 import numpy as np
@@ -550,22 +487,29 @@ array([ 0,  1,  4,  9, 16, 25, 36, 49, 64, 81])
 
 ---
 
+name: exercise
+
 .left-column[
 
-## Showcase
-### ~20min
+## Duration
+### Individual exploration
 ]
-## Scientific Python
 
-Because of time, we can only have a quick look at the other scientific toolboxes.
+### Jupyter Notebooks
 
-`Scipy`: [`workshop/notebooks/python_scipy.ipynb`](../../../notebooks/workshop/notebooks/python_scipy.ipynb).
+The following Jupyter Notebooks should help you to refresh your knowledge on multiple Python packages.
 
-`Scikit`: [`workshop/notebooks/python_scikit.ipynb`](../../../notebooks/workshop/notebooks/python_scikit.ipynb).
+Notebook 1: [Jupyter Notebook](../notebooks/01a_intro_jupyter-notebook.ipynb)  
+Notebook 2: [All about Python](../notebooks/01b_intro_python.ipynb)  
+Notebook 3: [Numpy](../notebooks/01c_intro_numpy.ipynb)  
+Notebook 4: [Scipy](../notebooks/01d_intro_scipy.ipynb)  
+Notebook 5: [Scikit-Learn and Scikit-Image](../notebooks/01e_intro_scikit.ipynb)  
+Notebook 6: [Statistics](../notebooks/01f_intro_statistics.ipynb)  
+Notebook 7: [Visualization](../notebooks/01g_intro_visualization.ipynb)  
 
-`Statistics`: [`workshop/notebooks/python_statistics.ipynb`](../../../notebooks/workshop/notebooks/python_statistics.ipynb).
+Because of time constraints, we will not be able to go through them in detail.
 
-`Visualization`: [`workshop/notebooks/python_visualization.ipynb`](../../../notebooks/workshop/notebooks/python_visualization.ipynb).
+***Note:*** Open the link with right-click and select "open link in new tab".
 
 ---
 layout: true
