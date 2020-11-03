@@ -39,8 +39,7 @@ RUN conda install -y -q --name neuro numpy=1.18 \
                                    joblib \
                                    nitime \
                                    nibabel \
-                                   nilearn \
-                                   nistats==0.0.1b2 \
+                                   git+https://github.com/nilearn/nilearn \
                                    pingouin==0.2.4 \
                                    matplotlib \
                                    nose \
@@ -60,10 +59,34 @@ USER neuro
 
 RUN bash -c 'source activate neuro \
              && cd /data/ds000114 \
-             && datalad get -J 4 /data/ds000114/sub-0[234789]/ses-test/anat/sub-0[234789]_ses-test_T1w.nii.gz \
-                                 /data/ds000114/sub-0[234789]/ses-test/func/*fingerfootlips* \
+             && datalad get -J 4 /data/ds000114/sub-0[123]/ses-test/anat/sub-0[123]_ses-test_T1w.nii.gz \
+                                 /data/ds000114/sub-0[123]/ses-test/func/*fingerfootlips* \
                                  /data/ds000114/derivatives/freesurfer/sub-01 \
-                                 /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips*'
+                                 /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips* \
+                                 /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/*fingerfootlips* \
+                                 /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/*fingerfootlips*'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_preproc_bold.nii.gz'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_preproc_bold.nii.gz'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_preproc_bold.nii.gz'
+
+RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_events.tsv
+
+RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_events.tsv
+
+RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_events.tsv
+
+RUN bash -c 'rm -r /data/ds000114/*/ses-retest/*'
+
+RUN bash -c 'rm -r /data/ds000114/derivatives/fmriprep/*/ses-retest/*'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
+
+RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
 
 #------------------------------------------------
 # Copy workshop notebooks into image and clean up
