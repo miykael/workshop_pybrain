@@ -44,11 +44,12 @@ RUN conda install -y -q --name neuro numpy=1.18 \
                                    matplotlib \
                                    nose \
                                    pybids==0.10.2 \
-                                   scipy \
-                                   tensorflow==2.2 \
+                                   scipy==1.4.1 \
+                                   tensorflow==2.3 \
                                    keras \
                                    vtk" \
     && rm -rf ~/.cache/pip/* \
+    && rm -rf /opt/conda/pkgs/* \
     && sync
 
 #-----------------------------------------------
@@ -59,34 +60,41 @@ USER neuro
 
 RUN bash -c 'source activate neuro \
              && cd /data/ds000114 \
-             && datalad get -J 4 /data/ds000114/sub-0[123]/ses-test/anat/sub-0[123]_ses-test_T1w.nii.gz \
-                                 /data/ds000114/sub-0[123]/ses-test/func/*fingerfootlips* \
+             && datalad get -J 4 /data/ds000114/sub-0[1237]/ses-test/anat/sub-0[1237]_ses-test_T1w.nii.gz \
+                                 /data/ds000114/sub-0[1237]/ses-test/func/*fingerfootlips* \
                                  /data/ds000114/derivatives/freesurfer/sub-01 \
                                  /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/*fingerfootlips* \
                                  /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/*fingerfootlips* \
-                                 /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/*fingerfootlips*'
+                                 /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/*fingerfootlips* \
+                                 /data/ds000114/derivatives/fmriprep/sub-07/ses-test/func/*fingerfootlips* \
+             && mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz \
+             && mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz \
+             && mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz \
+             && mv /data/ds000114/derivatives/fmriprep/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz \
+             && cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_events.tsv \
+             && cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_events.tsv \
+             && cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_events.tsv \
+             && cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_events.tsv \
+             && rm -r /data/ds000114/*/ses-retest/* \
+             && rm -r /data/ds000114/derivatives/fmriprep/*/ses-retest/* \
+             && mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv \
+             && mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv \
+             && mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv \
+             && mv /data/ds000114/derivatives/fmriprep/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-07/ses-test/func/sub-07_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
 
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz'
+USER root
 
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz'
+RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3/AAChCae4sCHzB8GJ02VHGOYQa?dl=1 \
+    && mkdir /data/adhd \
+    && unzip /data/adhd_data.zip -d /data/adhd/ -x / \
+    && rm /data/adhd_data.zip \
+    && chown -R neuro /data/adhd
 
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_space-mni152nlin2009casym_preproc.nii.gz /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_space-MNI152nlin2009casym_desc-preproc_bold.nii.gz'
-
-RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_events.tsv
-
-RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_events.tsv
-
-RUN cp /data/ds000114/task-fingerfootlips_events.tsv /data/ds000114/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_events.tsv
-
-RUN bash -c 'rm -r /data/ds000114/*/ses-retest/*'
-
-RUN bash -c 'rm -r /data/ds000114/derivatives/fmriprep/*/ses-retest/*'
-
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
-
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-02/ses-test/func/sub-02_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
-
-RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_confounds.tsv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_ses-test_task-fingerfootlips_bold_desc-confounds_timeseries.tsv'
+RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6queom/AACgoYuzr8Til-fim0wcwHwEa?dl=1 \
+    && mkdir /data/ds000228 \
+    && unzip /data/ds000228_data.zip -d /data/ds000228/ -x / \
+    && rm /data/ds000228_data.zip \
+    && chown -R neuro /data/ds000228
 
 #------------------------------------------------
 # Copy workshop notebooks into image and clean up
@@ -94,23 +102,7 @@ RUN bash -c 'mv /data/ds000114/derivatives/fmriprep/sub-03/ses-test/func/sub-03_
 
 USER root
 
-RUN curl -J -L -o /data/adhd_data.zip https://www.dropbox.com/sh/wl0auzjfnp2jia3/AAChCae4sCHzB8GJ02VHGOYQa?dl=1 \
-    && mkdir /data/adhd \
-    && unzip /data/adhd_data.zip -d /data/adhd/ -x / \
-    && rm /data/adhd_data.zip
-
-RUN chown -R neuro /data/adhd
-
-RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6queom/AACgoYuzr8Til-fim0wcwHwEa?dl=1 \
-    && mkdir /data/ds000228 \
-    && unzip /data/ds000228_data.zip -d /data/ds000228/ -x / \
-    && rm /data/ds000228_data.zip
-
-RUN chown -R neuro /data/ds000228
-
 COPY ["program.ipynb", "/home/neuro/workshop/program.ipynb"]
-
-RUN chown -R neuro /home/neuro
 
 COPY ["notebooks", "/home/neuro/workshop/notebooks"]
 
@@ -119,8 +111,6 @@ COPY ["slides", "/home/neuro/workshop/slides"]
 COPY ["test_notebooks.py", "/home/neuro/workshop/test_notebooks.py"]
 
 RUN chown -R neuro /home/neuro/workshop
-
-RUN rm -rf /opt/conda/pkgs/*
 
 USER neuro
 
