@@ -11,12 +11,3 @@ if __name__ == '__main__':
         cmd = 'pytest --nbval-lax --nbval-cell-timeout 7200 -v -s %s' % test
         print(cmd)
         os.system(cmd)
-
-    # Test nipype notebooks
-    notebooks = sorted(glob('/home/neuro/workshop/nipype_tutorial/notebooks/*.ipynb'))
-
-    # Test the notebooks
-    for test in notebooks:
-        cmd = 'pytest --nbval-lax --nbval-cell-timeout 7200 -v -s %s' % test
-        print(cmd)
-        os.system(cmd)
