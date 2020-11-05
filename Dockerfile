@@ -173,9 +173,7 @@ USER root
 
 RUN printf "[user]\n\tname = miykael\n\temail = michaelnotter@hotmail.com\n" > ~/.gitconfig \
     && mkdir /data && chmod 777 /data && chmod a+rw /data \
-    && mkdir /output && chmod 777 /output && chmod a+rw /output \
-    && mkdir /workshop && chmod 777 /workshop && chmod a+rw /workshop \
-    && mkdir /home/neuro/workshop && chmod 777 /home/neuro/workshop && chmod a+rw /home/neuro/workshop
+    && mkdir /output && chmod 777 /output && chmod a+rw /output
 
 RUN curl -J -L -o /data/ds000114_data.zip https://www.dropbox.com/sh/940edqy5s7ztrem/AACFkiN3XjZJWjblWYQ-6N_Xa?dl=1 \
     && mkdir /data/ds000114 \
@@ -195,12 +193,15 @@ RUN curl -J -L -o /data/ds000228_data.zip https://www.dropbox.com/sh/p25mxdxvh6q
     && rm /data/ds000228_data.zip \
     && chown -R neuro /data/ds000228
 
-USER neuro
-
 COPY workshop /home/neuro/workshop
 
-RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py
+RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py \
+    && chown -R neuro /home/neuro/workshop \
+    && chmod 777 /home/neuro/workshop \
+    && chmod a+rw /home/neuro/workshop
 
 WORKDIR /home/neuro/workshop
+
+USER neuro
 
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=pybrain"]
