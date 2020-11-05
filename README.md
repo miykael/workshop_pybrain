@@ -1,4 +1,4 @@
-<img src="slides/images/Cambridge_logo.png" height=100>
+<img src="workshop/slides/images/Cambridge_logo.png" height=100>
 
 # Workshops Cambridge - 2020
 
@@ -77,7 +77,7 @@ Once the container is pulled and on your system, you're all good to go. To acces
 
 **Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
 
-<img src="slides/images/jupyter_token.png" height=80>
+<img src="workshop/slides/images/jupyter_token.png" height=80>
 
 ### Important notes
 
