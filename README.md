@@ -73,7 +73,7 @@ Once the container is pulled and on your system, you're all good to go. To acces
         docker run -p 8888:8888 -it --rm miykael/workshop_pybrain
 
 2. Open [http://127.0.0.1:8888/?token=pybrain](http://127.0.0.1:8888/?token=pybrain) or [http://localhost:8888/?token=pybrain](http://localhost:8888/?token=pybrain) in your web browser to access the workshop content.
-3. Once Jupyter Notebook is open, double click on the folder `workshop` and open the Jupyter Notebook called `program.ipynb` - et voilà.
+3. Once Jupyter Notebook is open, double click on the Jupyter Notebook called `program.ipynb` - et voilà.
 
 **Note**: Should you by any chance encounter the following "Password or token" needed message, use the token `pybrain` to login.
 
@@ -157,6 +157,6 @@ To get things up and running, please follow these steps:
 
 ## 3. Jupyter NBViewer: Visual inspection only
 
-If you want to go through the content of this workshop without installing anything on your machine, you should chose this approach. To see all the notebooks and slides from this workshop, please use this [Jupyter NBviewer link](https://nbviewer.jupyter.org/github/miykael/workshop_pybrain/blob/master/program.ipynb).
+If you want to go through the content of this workshop without installing anything on your machine, you should chose this approach. To see all the notebooks and slides from this workshop, please use this [Jupyter NBviewer link](https://nbviewer.jupyter.org/github/miykael/workshop_pybrain/blob/master/workshop/program.ipynb).
 
 **Note**: For the non-interactive version of the Nipype section of this workshop, please us [this link](https://miykael.github.io/nipype_tutorial/).
