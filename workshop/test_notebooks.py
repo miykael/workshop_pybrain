@@ -5,6 +5,7 @@ if __name__ == '__main__':
 
     # Test workshop notebooks
     notebooks = sorted(glob('/home/neuro/workshop/notebooks/*.ipynb'))
+    notebooks =  [n for n in notebooks if '03a_functional_connectivity' not in n]
 
     # Test the notebooks
     for test in notebooks:
