@@ -8,6 +8,6 @@ if __name__ == '__main__':
 
     # Test the notebooks
     for test in notebooks:
-        cmd = 'pytest --nbval-lax --nbval-cell-timeout 7200 -v -s %s' % test
+        cmd = 'pytest --nbval-lax --nbval-cell-timeout 10000 -v -s %s' % test
         print(cmd)
         os.system(cmd)
