@@ -197,8 +197,7 @@ COPY workshop /home/neuro/workshop
 
 RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py \
     && chown -R neuro /home/neuro/workshop \
-    && chmod 777 /home/neuro/workshop \
-    && chmod a+rw /home/neuro/workshop
+    && chmod -R 777 /home/neuro/workshop \
 
 WORKDIR /home/neuro/workshop
 
