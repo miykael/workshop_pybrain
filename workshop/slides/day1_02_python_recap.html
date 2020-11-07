@@ -222,7 +222,7 @@ name: intro
 
       - Makes transition from other languages easy
 
-      - We recommend [`Spyder`](https://pythonhosted.org/spyder/)
+      - We recommend [`Spyder`](https://www.spyder-ide.org/)
 
 &nbsp;
 
@@ -327,13 +327,9 @@ The best way to get a good, stable and flexible Python environment on your syste
 
 Conda gives you access to almost all python packages that you need. For the rest use `pip` or `git`.
 
---
-
 &nbsp;
 
 Install a minimalistic conda environment with [Miniconda](https://conda.io/miniconda.html) and a more complete one, with the basic packages already pre-installed with [Anaconda](https://www.anaconda.com/download).
-
---
 
 &nbsp;
 
@@ -342,7 +338,7 @@ Conda allows you to have multiple Python environments next to each.
 
 name: jupyter
 
-## Jupyter Notebook - to program
+## Jupyter Notebook
 
 Open-source web application that allows to create and share documents that contain live code, equations, visualizations, and narrative text.
 
@@ -386,8 +382,6 @@ Increase the learning curve in Python
 
 &nbsp;
 
---
-
 Great tool to share data, results, and code
 
 - Great for open & reproducible science
@@ -395,8 +389,6 @@ Great tool to share data, results, and code
 - See for example the [LIGO results](https://losc.ligo.org/tutorials/)
 
 &nbsp;
-
---
 
 Great for teaching
 
@@ -463,25 +455,32 @@ Python has a package for almost everything. As a researcher, you most likely wan
 ## `Numpy` - Important to know
 
 ```python
-#### Important Points about Numpy
-```python
+# Load package
 import numpy as np
+```
 
+```python
 # Indexing & Slicing
 >>> data = np.arange(10)
 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 >>> data[data%2==0]
 array([0, 2, 4, 6, 8])
+```
 
+```python
 # Elementwise operations
 >>> data**2
 array([ 0,  1,  4,  9, 16, 25, 36, 49, 64, 81])
+```
 
+```python
 # Basic reductions
 >>> data.std()
 2.8722813232690143
+```
 
+```python
 # And much more...
 ```
 
@@ -499,13 +498,13 @@ name: exercise
 
 The following Jupyter Notebooks should help you to refresh your knowledge on multiple Python packages.
 
-Notebook 1: [Jupyter Notebook](../notebooks/01a_intro_jupyter-notebook.ipynb)  
-Notebook 2: [All about Python](../notebooks/01b_intro_python.ipynb)  
-Notebook 3: [Numpy](../notebooks/01c_intro_numpy.ipynb)  
-Notebook 4: [Scipy](../notebooks/01d_intro_scipy.ipynb)  
-Notebook 5: [Scikit-Learn and Scikit-Image](../notebooks/01e_intro_scikit.ipynb)  
-Notebook 6: [Statistics](../notebooks/01f_intro_statistics.ipynb)  
-Notebook 7: [Visualization](../notebooks/01g_intro_visualization.ipynb)  
+Notebook 1: [Jupyter Notebook](../../notebooks/notebooks/01a_intro_jupyter-notebook.ipynb)  
+Notebook 2: [All about Python](../../notebooks/notebooks/01b_intro_python.ipynb)  
+Notebook 3: [Numpy](../../notebooks/notebooks/01c_intro_numpy.ipynb)  
+Notebook 4: [Scipy](../../notebooks/notebooks/01d_intro_scipy.ipynb)  
+Notebook 5: [Scikit-Learn and Scikit-Image](../../notebooks/notebooks/01e_intro_scikit.ipynb)  
+Notebook 6: [Statistics](../../notebooks/notebooks/01f_intro_statistics.ipynb)  
+Notebook 7: [Visualization](../../notebooks/notebooks/01g_intro_visualization.ipynb)  
 
 Because of time constraints, we will not be able to go through them in detail.
 
