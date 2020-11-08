@@ -2,7 +2,7 @@
 
 # Workshops Cambridge - 2020
 
-[![CircleCi](https://circleci.com/gh/miykael/workshop_pybrain.svg?style=shield)](https://circleci.com/gh/miykael/workshop_pybrain/tree/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/miykael/mybinder_pybrain/HEAD)
 [![GitHub size](https://github-size-badge.herokuapp.com/miykael/workshop_pybrain.svg)](https://github.com/miykael/workshop_pybrain/archive/master.zip)
 [![Docker Hub](https://img.shields.io/docker/pulls/miykael/workshop_pybrain.svg?maxAge=2592000)](https://hub.docker.com/r/miykael/workshop_pybrain/)
 [![GitHub HitCount](http://hits.dwyl.io/miykael/workshop_pybrain.svg)](http://hits.dwyl.io/miykael/workshop_pybrain)
@@ -156,6 +156,8 @@ To get things up and running, please follow these steps:
 
 
 ## 3. Mybinder (online): Fully interactive with restricted computational power
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/miykael/mybinder_pybrain/HEAD)
 
 [MyBinder.org](https://mybinder.org/) is a great service that allows you to run Jupyter notebooks in a Docker or Python environment, directly online and for free. However, this service comes of course with a restricted computational environment (1-2GB of RAM). This means, many notebooks might be very slow and some might even crash, due to not enough memory.
 
