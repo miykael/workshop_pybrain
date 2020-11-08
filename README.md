@@ -41,12 +41,12 @@ The scheudle might still be subject to some small changes, but the bigger pictur
 
 ## Accessing workshop content (interactively or static)
 
-There are three ways how you can profit from this workshop:
+There are four ways how you can profit from this workshop:
 
 1. Via **Docker** (recommened): **Full** workshop experience, **interactive**, with **all software dependencies**.
 2. Via **Conda (Python)**: **Almost full** workshop experience, **interactive**, with **only Python based** software dependencies (i.e. no support for FSL, SPM or ANTs)
-3. Via **Jupyter NBViewer**: **Only visual exploration** of the workshop content, **no interactive** aspect.
-
+3. Via **Mybinder**: **Full** workshop experience, **interactive** and **online**, with restricted computational power.
+4. Via **Jupyter NBViewer**: **Only visual exploration** of the workshop content, **no interactive** aspect.
 
 ## 1. Docker (recommended): Fully interactive
 
@@ -155,7 +155,14 @@ To get things up and running, please follow these steps:
 **Note**: This only provides you the notebooks from the workshop that are not already in the `nipype_tutorial`. You can download the notebooks for the Nipype section of this workshop directly from [here](https://github.com/miykael/nipype_tutorial).
 
 
-## 3. Jupyter NBViewer: Visual inspection only
+## 3. Mybinder (online): Fully interactive with restricted computational power
+
+[MyBinder.org](https://mybinder.org/) is a great service that allows you to run Jupyter notebooks in a Docker or Python environment, directly online and for free. However, this service comes of course with a restricted computational environment (1-2GB of RAM). This means, many notebooks might be very slow and some might even crash, due to not enough memory.
+
+You can use this approach to run and test most of the notebooks and to explore the slides. To access the MyBinder instance, use [this link](https://mybinder.org/v2/gh/miykael/mybinder_pybrain/HEAD).
+
+
+## 4. Jupyter NBViewer: Visual inspection only
 
 If you want to go through the content of this workshop without installing anything on your machine, you should chose this approach. To see all the notebooks and slides from this workshop, please use this [Jupyter NBviewer link](https://nbviewer.jupyter.org/github/miykael/workshop_pybrain/blob/master/workshop/program.ipynb).
 
